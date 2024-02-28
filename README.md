@@ -11,8 +11,8 @@ ibaraki.devのもくもく会で使うDiscord Bot。
 - [ ] huskyかlefthookでcommit時にcheckを実行する
 - [ ] zodでのrequestのvalidationの追加
 - [ ] testの追加
-- [ ] mainへのpushでCloudflareへデプロイする
-- [ ] Ibaraki-devのorganizationを作成
+- [x] mainへのpushでCloudflareへデプロイする
+- [x] Ibaraki-devのorganizationを作成
 - [ ] READMEに開発方法を追記
 - [ ] Zennに記事を執筆
 - [ ] 時報のためのcronを追加
