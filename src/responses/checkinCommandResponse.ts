@@ -28,7 +28,7 @@ export const buildCheckinModalResponse = (
               required: true,
               value: prevProfile,
               placeholder:
-                "山田太郎です。水戸でエンジニアをしています。趣味は俳句です。",
+                "山田太郎です。水戸でエンジニアをしています。",
             },
           ],
         },
@@ -43,7 +43,7 @@ export const buildCheckinModalResponse = (
               min_length: 1,
               max_length: 512,
               required: true,
-              placeholder: "* 新しい機能の実装",
+              placeholder: "* 新しい機能の実装\n* 技術書を読む",
             },
           ],
         },
