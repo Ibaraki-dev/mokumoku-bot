@@ -2,13 +2,16 @@
 
 Ibaraki.devのもくもく会で使うDiscord Bot。
 
-## 🚀 Features
+# 🚀 Features
 
-### チェックイン `/checkin`
+## チェックイン `/checkin`
 
 `/checkin` で自己紹介と今日やることを入力するモーダルが表示される。モーダルで入力した内容は、フォーマットされてチャンネルに投稿される。
 
-### (WIP) スタート `/mokumoku-start`
+https://github.com/Ibaraki-dev/mokumoku-bot/assets/11070996/b4dc1a42-5e12-4059-989b-2543d3ca31c3
+
+
+## (WIP) スタート `/mokumoku-start`
 
 `/mokumoku-start` でもくもく会のスケジュールと、`/checkin`コマンドの説明を投稿する。さらに、15:00とTech Talkの開始、17:50にもくもく会終了の通知を行う。
 
