@@ -3,6 +3,7 @@
 ibaraki.devのもくもく会で使うDiscord Bot。
 
 ## ✅ ToDo
+
 - [x] interactionの整理・モジュール化
 - [x] modalの送信で、formatした投稿内容をdiscordに送信
 - [x] command名をmokuからcheckinに変更
