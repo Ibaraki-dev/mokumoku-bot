@@ -1,6 +1,6 @@
 # Mokumoku Bot
 
-ibaraki.devのもくもく会で使うDiscord Bot。
+Ibaraki.devのもくもく会で使うDiscord Bot。
 
 ## ✅ ToDo
 
