@@ -1,0 +1,34 @@
+{
+  "version": "5",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1709042345910,
+      "tag": "0000_misty_ultragirl",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1709256372239,
+      "tag": "0001_chubby_spyke",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1709266056134,
+      "tag": "0002_curved_omega_flight",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1709266132201,
+      "tag": "0003_free_dakota_north",
+      "breakpoints": true
+    }
+  ]
+}

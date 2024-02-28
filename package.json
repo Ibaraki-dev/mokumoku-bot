@@ -1,0 +1,25 @@
+{
+  "scripts": {
+    "dev": "wrangler dev src/index.ts",
+    "deploy": "wrangler deploy --minify src/index.ts",
+    "check": "bunx @biomejs/biome check --apply ./src",
+    "generate": "drizzle-kit generate:sqlite --schema=src/schema.ts",
+    "up": "drizzle-kit up:sqlite --schema=src/schema.ts"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.10",
+    "discord-api-types": "^0.37.70",
+    "discord-interactions": "^3.4.0",
+    "drizzle-orm": "^0.29.4",
+    "form-data": "^4.0.0",
+    "hono": "^4.0.5",
+    "lefthook": "^1.6.3"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.5.3",
+    "@cloudflare/workers-types": "^4.20240208.0",
+    "bun-types": "^1.0.29",
+    "drizzle-kit": "^0.20.14",
+    "wrangler": "^3.25.0"
+  }
+}
