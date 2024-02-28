@@ -1,0 +1,13 @@
+{
+  "version": "5",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1709042345910,
+      "tag": "0000_misty_ultragirl",
+      "breakpoints": true
+    }
+  ]
+}

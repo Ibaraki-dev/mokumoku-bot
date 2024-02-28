@@ -1,0 +1,8 @@
+name = "mokumoku-bot"
+compatibility_date = "2023-12-01"
+
+[[d1_databases]]
+binding = "DB" # i.e. available in your Worker on env.DB
+database_name = "prod-mokumoku-bot"
+database_id = "1e7cb02f-b32c-482a-a49f-5ce46e14b502"
+migrations_dir = "drizzle"
