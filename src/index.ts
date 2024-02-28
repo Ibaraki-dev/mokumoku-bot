@@ -1,6 +1,6 @@
 import { InteractionType } from "discord-interactions";
 import { Hono } from "hono";
-import { handleApplicationComand as handleApplicationCommand } from "./interactions/applicationCommand";
+import { handleApplicationCommand } from "./interactions/applicationCommand";
 import { handleModalSubmit } from "./interactions/modalSubmit";
 import { verifyDiscordInteraction } from "./middleware/verifyDiscordInteraction";
 import { CheckinsRepository } from "./repositories/checkinsRepository";

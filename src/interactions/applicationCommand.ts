@@ -3,7 +3,7 @@ import { CHECKIN_COMMAND_NAME } from "../constants";
 import { UsersRepository } from "../repositories/usersRepository";
 import { buildCheckinModalResponse } from "../responses/checkinCommandResponse";
 
-export const handleApplicationComand = async ({
+export const handleApplicationCommand = async ({
   intentObj,
   userRepository,
 }: {
