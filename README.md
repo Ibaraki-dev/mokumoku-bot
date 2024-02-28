@@ -6,9 +6,7 @@ ibaraki.devのもくもく会で使うDiscord Bot。
 - [x] interactionの整理・モジュール化
 - [x] modalの送信で、formatした投稿内容をdiscordに送信
 - [x] command名をmokuからcheckinに変更
-- [ ] profile欄のデフォルト値をD1から取得
-  - 参考: https://qiita.com/kmkkiii/items/2b22fa53a90bf98158c0
-  - [ ] d1にデータベースを追加
+- [x] profile欄のデフォルト値をD1から取得
 - [ ] huskyかlefthookでcommit時にcheckを実行する
 - [ ] zodでのrequestのvalidationの追加
 - [ ] testの追加
