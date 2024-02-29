@@ -2,6 +2,6 @@
   "editor.defaultFormatter": "biomejs.biome",
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
-  "cSpell.words": ["CHECKIN", "checkins"],
+  "cSpell.words": ["CHECKIN", "checkins", "Mokumoku"],
   "editor.formatOnType": true
 }

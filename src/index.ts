@@ -1,6 +1,7 @@
 import { InteractionType } from "discord-interactions";
 import { Hono } from "hono";
 import checkinCommand from "./interactions/applicationCommands/checkin";
+import mokumokuStartCommand from "./interactions/applicationCommands/mokumokuStart";
 import { handleApplicationCommands } from "./interactions/handleApplicationCommands";
 import { handleModalSubmits } from "./interactions/handleModalSubmit";
 import checkinModal from "./interactions/modalSubmits/checkinModal";
@@ -24,7 +25,7 @@ app.post("/interaction", verifyDiscordInteraction, async (c) => {
           intentObj: body,
           userRepository: new UsersRepository(c.env.DB),
           checkinsRepository: new CheckinsRepository(c.env.DB),
-          commands: [checkinCommand],
+          commands: [checkinCommand, mokumokuStartCommand],
         }),
       );
     case InteractionType.MODAL_SUBMIT:

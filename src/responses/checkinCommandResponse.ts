@@ -27,8 +27,7 @@ export const buildCheckinModalResponse = (
               max_length: 512,
               required: true,
               value: prevProfile,
-              placeholder:
-                "山田太郎です。水戸でエンジニアをしています。",
+              placeholder: "山田太郎です。水戸でエンジニアをしています。",
             },
           ],
         },
