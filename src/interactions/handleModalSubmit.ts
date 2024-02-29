@@ -3,10 +3,8 @@ import {
   APIModalSubmission,
   InteractionType,
 } from "discord-api-types/v10";
-import { CHECKIN_MODAL_CUSTOM_ID } from "../constants";
 import { CheckinsRepository } from "../repositories/checkinsRepository";
 import { UsersRepository } from "../repositories/usersRepository";
-import { buildCheckinModalSubmitResponse } from "../responses/checkinModalSubmitResponse";
 
 export type ModalSubmitObj = APIBaseInteraction<
   InteractionType.ModalSubmit,
@@ -43,4 +41,5 @@ export const handleModalSubmits = async ({
       });
     }
   }
+  throw new Error("Invalid interaction");
 };

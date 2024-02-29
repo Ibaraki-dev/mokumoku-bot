@@ -1,7 +1,6 @@
 import { APIBaseInteraction, InteractionType } from "discord-api-types/v10";
 import { CheckinsRepository } from "../repositories/checkinsRepository";
 import { UsersRepository } from "../repositories/usersRepository";
-import { checkins } from "./../schema";
 
 export type ApplicationCommandObj = APIBaseInteraction<
   InteractionType.ApplicationCommand,
