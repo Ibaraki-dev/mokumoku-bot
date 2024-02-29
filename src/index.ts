@@ -1,7 +1,9 @@
 import { InteractionType } from "discord-interactions";
 import { Hono } from "hono";
-import { handleApplicationCommand } from "./interactions/applicationCommand";
-import { handleModalSubmit } from "./interactions/modalSubmit";
+import checkinCommand from "./interactions/applicationCommands/checkin";
+import { handleApplicationCommands } from "./interactions/handleApplicationCommands";
+import { handleModalSubmits } from "./interactions/handleModalSubmit";
+import checkinModal from "./interactions/modalSubmits/checkinModal";
 import { verifyDiscordInteraction } from "./middleware/verifyDiscordInteraction";
 import { CheckinsRepository } from "./repositories/checkinsRepository";
 import { UsersRepository } from "./repositories/usersRepository";
@@ -18,17 +20,20 @@ app.post("/interaction", verifyDiscordInteraction, async (c) => {
   switch (body.type) {
     case InteractionType.APPLICATION_COMMAND:
       return c.json(
-        await handleApplicationCommand({
+        await handleApplicationCommands({
           intentObj: body,
           userRepository: new UsersRepository(c.env.DB),
+          checkinsRepository: new CheckinsRepository(c.env.DB),
+          commands: [checkinCommand],
         }),
       );
     case InteractionType.MODAL_SUBMIT:
       return c.json(
-        await handleModalSubmit({
+        await handleModalSubmits({
           intentObj: body,
           userRepository: new UsersRepository(c.env.DB),
           checkinsRepository: new CheckinsRepository(c.env.DB),
+          modals: [checkinModal],
         }),
       );
     default:
