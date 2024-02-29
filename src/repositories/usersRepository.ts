@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { desc, eq } from "drizzle-orm";
 import { DrizzleD1Database, drizzle } from "drizzle-orm/d1";
 import { checkins, users } from "../schema";
@@ -29,6 +30,7 @@ export class UsersRepository {
       .values({
         name,
         discordUserId,
+        createdAt: dayjs().tz().format(),
       })
       .returning();
     return newUser;

@@ -1,14 +1,9 @@
 import dayjs from "dayjs";
-import tz from "dayjs/plugin/timezone";
-import utc from "dayjs/plugin/utc";
 import { MOKUMOKU_START_COMMAND_NAME } from "../../constants";
 import { buildMokumokuCommandResponse as buildMokumokuStartCommandResponse } from "../../responses/mokumokuStartCommandResponse";
 
-dayjs.extend(utc);
-dayjs.extend(tz);
-
 const handler = async () => {
-  const today = dayjs.tz("Asia/Tokyo").format("YYYY/MM/DD");
+  const today = dayjs().tz().format("YYYY年MM月DD日");
   return buildMokumokuStartCommandResponse({ date: today });
   /*
   その他メモ

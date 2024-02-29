@@ -1,3 +1,6 @@
+import dayjs from "dayjs";
+import timezone from "dayjs/plugin/timezone";
+import utc from "dayjs/plugin/utc";
 import { InteractionType } from "discord-interactions";
 import { Hono } from "hono";
 import checkinCommand from "./interactions/applicationCommands/checkin";
@@ -9,6 +12,10 @@ import { verifyDiscordInteraction } from "./middleware/verifyDiscordInteraction"
 import { CheckinsRepository } from "./repositories/checkinsRepository";
 import { UsersRepository } from "./repositories/usersRepository";
 import { errorResponse } from "./responses/errorResponse";
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
+dayjs.tz.setDefault("Asia/Tokyo");
 
 type Bindings = {
   DB: D1Database;
@@ -45,7 +52,11 @@ app.post("/interaction", verifyDiscordInteraction, async (c) => {
   } catch (e) {
     console.error(e);
     return c.json(
-      errorResponse(e instanceof Error ? e.message : "Unknown error"),
+      errorResponse(
+        e instanceof Error
+          ? e.message
+          : "Unknown error. 開発者に相談してください。",
+      ),
     );
   }
 });

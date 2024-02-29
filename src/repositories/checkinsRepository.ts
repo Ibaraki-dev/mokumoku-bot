@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { DrizzleD1Database, drizzle } from "drizzle-orm/d1";
 import { checkins } from "../schema";
 
@@ -21,6 +22,8 @@ export class CheckinsRepository {
       userId,
       profile,
       todo,
+      date: dayjs().tz().format("YYYY-MM-DD"),
+      createdAt: dayjs().tz().format(),
     });
   }
 }
