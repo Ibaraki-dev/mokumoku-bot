@@ -1,8 +1,15 @@
+import dayjs from "dayjs";
+import tz from "dayjs/plugin/timezone";
+import utc from "dayjs/plugin/utc";
 import { MOKUMOKU_START_COMMAND_NAME } from "../../constants";
 import { buildMokumokuCommandResponse as buildMokumokuStartCommandResponse } from "../../responses/mokumokuStartCommandResponse";
 
+dayjs.extend(utc);
+dayjs.extend(tz);
+
 const handler = async () => {
-  return buildMokumokuStartCommandResponse({ date: "2024/02/29" });
+  const today = dayjs.tz("Asia/Tokyo").format("YYYY/MM/DD");
+  return buildMokumokuStartCommandResponse({ date: today });
   /*
   その他メモ
   * スタートしたという事実をDBに保存する？
