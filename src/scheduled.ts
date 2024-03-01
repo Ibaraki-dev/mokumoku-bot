@@ -10,30 +10,33 @@ const scheduled: ExportedHandler<Bindings>["scheduled"] = async (
   event,
   env,
 ) => {
-  const eventsRepository = new EventsRepository(env.DB);
-
-  // もくもく会が開催されている日のみ実行
-  const todayEvent = await eventsRepository.findTodayEvent();
-  if (!todayEvent) {
-    return;
-  }
-
   const client = new DiscordClient(env.DISCORD_TOKEN);
+
+  const eventsRepository = new EventsRepository(env.DB);
+  const isEventDay = !!(await eventsRepository.findTodayEvent());
 
   switch (event.cron) {
     case "0 6 * * *":
-      client.sendMessage({
-        channelId: env.MOKUMOKU_CHANNEL_ID,
-        content:
-          "@here テックトークの時間です！発表希望者はこのメッセージに🙋‍♂️でリアクションしてください。",
-      });
+      if (isEventDay) {
+        await client.sendMessage({
+          channelId: env.MOKUMOKU_CHANNEL_ID,
+          body: {
+            content:
+              "@here テックトークの時間です！発表希望者はこのメッセージに🙋‍♂️でリアクションしてください。",
+          },
+        });
+      }
       break;
     case "50 8 * * * ":
-      client.sendMessage({
-        channelId: env.MOKUMOKU_CHANNEL_ID,
-        content:
-          "@here もくもく会終了の時間です！今日の成果を共有しましょう！🍻",
-      });
+      if (isEventDay) {
+        await client.sendMessage({
+          channelId: env.MOKUMOKU_CHANNEL_ID,
+          body: {
+            content:
+              "@here もくもく会終了の時間です！今日の成果を共有しましょう！🍻",
+          },
+        });
+      }
       break;
   }
 };
