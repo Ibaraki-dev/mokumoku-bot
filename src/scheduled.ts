@@ -1,5 +1,13 @@
+import dayjs from "dayjs";
+import timezone from "dayjs/plugin/timezone";
+import utc from "dayjs/plugin/utc";
 import { DiscordClient } from "./clients/discord";
 import { EventsRepository } from "./repositories/eventsRepository";
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
+dayjs.tz.setDefault("Asia/Tokyo");
+
 type Bindings = {
   DB: D1Database;
   DISCORD_TOKEN: string;
@@ -27,7 +35,7 @@ const scheduled: ExportedHandler<Bindings>["scheduled"] = async (
         });
       }
       break;
-    case "50 8 * * * ":
+    case "50 8 * * *":
       if (isEventDay) {
         await client.sendMessage({
           channelId: env.MOKUMOKU_CHANNEL_ID,
