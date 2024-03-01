@@ -1,6 +1,7 @@
 # Mokumoku Bot
 
-Ibaraki.devのもくもく会で使うDiscord Bot。
+[Ibaraki.dev](https://discord.gg/4XA8EhEseZ) のもくもく会で使うDiscord Botです。
+
 
 ## 🚀 Features
 
@@ -18,6 +19,9 @@ https://github.com/Ibaraki-dev/mokumoku-bot/assets/11070996/b4dc1a42-5e12-4059-9
 ![CleanShot 2024-03-01 at 16 56 51](https://github.com/Ibaraki-dev/mokumoku-bot/assets/11070996/d709f532-af6d-4345-a875-ab02b4ba4324)
 
 さらに、15:00とTech Talkの開始、17:50にもくもく会終了の通知を行う。
+
+![image](https://github.com/Ibaraki-dev/mokumoku-bot/assets/11070996/3f11d35d-5eb0-4fb7-9046-e2ab43d01282)
+![image](https://github.com/Ibaraki-dev/mokumoku-bot/assets/11070996/3ab98749-5bbb-40f5-a81b-6900e0f12c3a)
 
 ### (wip) `/mokumoku-connpass`
 
