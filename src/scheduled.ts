@@ -30,7 +30,7 @@ const scheduled: ExportedHandler<Bindings>["scheduled"] = async (
           channelId: env.MOKUMOKU_CHANNEL_ID,
           body: {
             content:
-              "@here テックトークの時間です！発表希望者はこのメッセージに🙋‍♂️でリアクションしてください。",
+              "@here \nテックトークの時間です！話せる人はこのメッセージに🙋‍♂️でリアクションしてください",
           },
         });
       }
@@ -41,7 +41,7 @@ const scheduled: ExportedHandler<Bindings>["scheduled"] = async (
           channelId: env.MOKUMOKU_CHANNEL_ID,
           body: {
             content:
-              "@here もくもく会終了の時間です！今日の成果を共有しましょう！🍻",
+              "@here \nもくもく会終了の時間です！今日の成果を共有しましょう！🍻",
           },
         });
       }
