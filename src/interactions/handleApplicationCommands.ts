@@ -1,8 +1,5 @@
 import { APIBaseInteraction, InteractionType } from "discord-api-types/v10";
-import { CheckinsRepository } from "../repositories/checkinsRepository";
-import { UsersRepository } from "../repositories/usersRepository";
-import { EventsRepository } from "./../repositories/eventsRepository";
-import { events } from "./../schema";
+import { Repositories } from "../types";
 
 export type ApplicationCommandObj = APIBaseInteraction<
   InteractionType.ApplicationCommand,
@@ -13,22 +10,16 @@ export type ApplicationCommandObj = APIBaseInteraction<
 
 export const handleApplicationCommands = async ({
   intentObj,
-  userRepository,
-  checkinsRepository,
-  eventsRepository,
+  repositories,
   commands,
 }: {
   intentObj: ApplicationCommandObj;
-  userRepository: UsersRepository;
-  checkinsRepository: CheckinsRepository;
-  eventsRepository: EventsRepository;
+  repositories: Repositories;
   commands: {
     commandName: string;
     handler: (args: {
       intentObj: ApplicationCommandObj;
-      checkinsRepository: CheckinsRepository;
-      userRepository: UsersRepository;
-      eventsRepository: EventsRepository;
+      repositories: Repositories;
     }) => Promise<{
       type: number;
       data: unknown;
@@ -39,9 +30,7 @@ export const handleApplicationCommands = async ({
     if (command.commandName === intentObj.data?.name) {
       return command.handler({
         intentObj,
-        userRepository,
-        eventsRepository,
-        checkinsRepository,
+        repositories,
       });
     }
   }

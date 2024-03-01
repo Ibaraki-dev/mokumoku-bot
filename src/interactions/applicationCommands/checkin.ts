@@ -1,17 +1,14 @@
 import { CHECKIN_COMMAND_NAME } from "../../constants";
-import { EventsRepository } from "../../repositories/eventsRepository";
-import { UsersRepository } from "../../repositories/usersRepository";
 import { buildCheckinModalResponse } from "../../responses/checkinCommandResponse";
+import { Repositories } from "../../types";
 import { ApplicationCommandObj } from "../handleApplicationCommands";
 
 const handler = async ({
   intentObj,
-  userRepository,
-  eventsRepository,
+  repositories: { usersRepository, eventsRepository },
 }: {
   intentObj: ApplicationCommandObj;
-  userRepository: UsersRepository;
-  eventsRepository: EventsRepository;
+  repositories: Repositories;
 }) => {
   if (!intentObj.member) {
     throw new Error("Invalid interaction");
@@ -24,7 +21,7 @@ const handler = async ({
     );
   }
 
-  const prevCheckin = await userRepository.findLatestCheckinByDiscordUserId(
+  const prevCheckin = await usersRepository.findLatestCheckinByDiscordUserId(
     intentObj.member.user.id,
   );
 

@@ -11,6 +11,7 @@ import checkinModal from "./interactions/modalSubmits/checkinModal";
 import { verifyDiscordInteraction } from "./middleware/verifyDiscordInteraction";
 import { CheckinsRepository } from "./repositories/checkinsRepository";
 import { EventsRepository } from "./repositories/eventsRepository";
+import { EventsToCheckinsRepository } from "./repositories/eventsToCheckinsRepository";
 import { UsersRepository } from "./repositories/usersRepository";
 import { errorResponse } from "./responses/errorResponse";
 
@@ -27,24 +28,28 @@ const app = new Hono<{ Bindings: Bindings }>();
 app.post("/interaction", verifyDiscordInteraction, async (c) => {
   const body = await c.req.json();
 
+  const repositories = {
+    usersRepository: new UsersRepository(c.env.DB),
+    checkinsRepository: new CheckinsRepository(c.env.DB),
+    eventsRepository: new EventsRepository(c.env.DB),
+    eventsToCheckinsRepository: new EventsToCheckinsRepository(c.env.DB),
+  };
+
   try {
     switch (body.type) {
       case InteractionType.APPLICATION_COMMAND:
         return c.json(
           await handleApplicationCommands({
+            repositories,
             intentObj: body,
-            userRepository: new UsersRepository(c.env.DB),
-            checkinsRepository: new CheckinsRepository(c.env.DB),
-            eventsRepository: new EventsRepository(c.env.DB),
             commands: [checkinCommand, mokumokuStartCommand],
           }),
         );
       case InteractionType.MODAL_SUBMIT:
         return c.json(
           await handleModalSubmits({
+            repositories,
             intentObj: body,
-            usersRepository: new UsersRepository(c.env.DB),
-            checkinsRepository: new CheckinsRepository(c.env.DB),
             modals: [checkinModal],
           }),
         );

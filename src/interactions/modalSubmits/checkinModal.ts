@@ -1,39 +1,52 @@
 import { CHECKIN_MODAL_CUSTOM_ID } from "../../constants";
-import { CheckinsRepository } from "../../repositories/checkinsRepository";
-import { UsersRepository } from "../../repositories/usersRepository";
 import { buildCheckinModalSubmitResponse } from "../../responses/checkinModalSubmitResponse";
+import { Repositories } from "../../types";
 import { ModalSubmitObj } from "../handleModalSubmit";
 
 const handler = async ({
   intentObj,
-  usersRepository: userRepository,
-  checkinsRepository,
+  repositories: {
+    usersRepository,
+    eventsRepository,
+    checkinsRepository,
+    eventsToCheckinsRepository,
+  },
 }: {
   intentObj: ModalSubmitObj;
-  usersRepository: UsersRepository;
-  checkinsRepository: CheckinsRepository;
+  repositories: Repositories;
 }) => {
   if (!(intentObj.member && intentObj.data)) {
     throw new Error("Invalid interaction");
+  }
+  const todayEvent = await eventsRepository.findTodayEvent();
+  if (!todayEvent) {
+    throw new Error(
+      "もくもく会が開始されていません。チェックインの前に`/mokumoku-start`を実行してください。",
+    );
   }
 
   const profile = intentObj.data.components[0].components[0].value;
   const todo = intentObj.data.components[1].components[0].value;
 
-  let targetUsers = await userRepository.findByDiscordUserId(
+  const targetUsers = await usersRepository.findByDiscordUserId(
     intentObj.member.user.id,
   );
 
-  if (targetUsers.length === 0) {
-    targetUsers = await userRepository.create({
-      name: intentObj.member.user.username,
-      discordUserId: intentObj.member.user.id,
-    });
-  }
-  await checkinsRepository.create({
-    userId: targetUsers[0].id,
+  const user =
+    targetUsers.length > 0
+      ? targetUsers[0]
+      : await usersRepository.create({
+          name: intentObj.member.user.username,
+          discordUserId: intentObj.member.user.id,
+        });
+  const checkin = await checkinsRepository.create({
+    userId: user.id,
     profile,
     todo,
+  });
+  await eventsToCheckinsRepository.create({
+    eventId: todayEvent.id,
+    checkinId: checkin.id,
   });
 
   return buildCheckinModalSubmitResponse({

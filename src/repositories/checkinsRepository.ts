@@ -1,14 +1,8 @@
 import dayjs from "dayjs";
-import { DrizzleD1Database, drizzle } from "drizzle-orm/d1";
 import { checkins } from "../schema";
+import { BaseRepository } from "./baseRepository";
 
-export class CheckinsRepository {
-  private db: DrizzleD1Database<Record<string, never>>;
-
-  constructor(d1db: D1Database) {
-    this.db = drizzle(d1db);
-  }
-
+export class CheckinsRepository extends BaseRepository {
   async create({
     userId,
     profile,
@@ -18,12 +12,17 @@ export class CheckinsRepository {
     profile: string;
     todo: string;
   }) {
-    await this.db.insert(checkins).values({
-      userId,
-      profile,
-      todo,
-      date: dayjs().tz().format("YYYY-MM-DD"),
-      createdAt: dayjs().tz().format(),
-    });
+    return (
+      await this.db
+        .insert(checkins)
+        .values({
+          userId,
+          profile,
+          todo,
+          date: dayjs().tz().format("YYYY-MM-DD"),
+          createdAt: dayjs().tz().format(),
+        })
+        .returning()
+    )[0];
   }
 }

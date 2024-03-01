@@ -1,15 +1,9 @@
 import dayjs from "dayjs";
 import { desc, eq } from "drizzle-orm";
-import { DrizzleD1Database, drizzle } from "drizzle-orm/d1";
 import { checkins, users } from "../schema";
+import { BaseRepository } from "./baseRepository";
 
-export class UsersRepository {
-  private db: DrizzleD1Database<Record<string, never>>;
-
-  constructor(d1db: D1Database) {
-    this.db = drizzle(d1db);
-  }
-
+export class UsersRepository extends BaseRepository {
   async findByDiscordUserId(discordUserId: string) {
     const targetUsers = await this.db
       .select()
@@ -25,15 +19,16 @@ export class UsersRepository {
     name: string;
     discordUserId: string;
   }) {
-    const newUser = await this.db
-      .insert(users)
-      .values({
-        name,
-        discordUserId,
-        createdAt: dayjs().tz().format(),
-      })
-      .returning();
-    return newUser;
+    return (
+      await this.db
+        .insert(users)
+        .values({
+          name,
+          discordUserId,
+          createdAt: dayjs().tz().format(),
+        })
+        .returning()
+    )[0];
   }
 
   async findLatestCheckinByDiscordUserId(discordUserId: string) {

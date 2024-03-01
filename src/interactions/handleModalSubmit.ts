@@ -3,8 +3,7 @@ import {
   APIModalSubmission,
   InteractionType,
 } from "discord-api-types/v10";
-import { CheckinsRepository } from "../repositories/checkinsRepository";
-import { UsersRepository } from "../repositories/usersRepository";
+import { Repositories } from "../types";
 
 export type ModalSubmitObj = APIBaseInteraction<
   InteractionType.ModalSubmit,
@@ -13,19 +12,16 @@ export type ModalSubmitObj = APIBaseInteraction<
 
 export const handleModalSubmits = async ({
   intentObj,
-  usersRepository,
-  checkinsRepository,
+  repositories,
   modals,
 }: {
   intentObj: ModalSubmitObj;
-  usersRepository: UsersRepository;
-  checkinsRepository: CheckinsRepository;
+  repositories: Repositories;
   modals: {
     customId: string;
     handler: (args: {
       intentObj: ModalSubmitObj;
-      usersRepository: UsersRepository;
-      checkinsRepository: CheckinsRepository;
+      repositories: Repositories;
     }) => Promise<{
       type: number;
       data: unknown;
@@ -36,8 +32,7 @@ export const handleModalSubmits = async ({
     if (modal.customId === intentObj.data?.custom_id) {
       return modal.handler({
         intentObj,
-        usersRepository,
-        checkinsRepository,
+        repositories,
       });
     }
   }

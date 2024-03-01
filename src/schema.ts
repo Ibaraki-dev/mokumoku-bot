@@ -38,18 +38,18 @@ export const checkins = sqliteTable(
   }),
 );
 
-export const usersToEvents = sqliteTable(
-  "users_to_events",
+export const eventsToCheckins = sqliteTable(
+  "events_to_checkins",
   {
-    userId: integer("user_id")
-      .notNull()
-      .references(() => users.id),
     eventId: integer("event_id")
       .notNull()
       .references(() => events.id),
+    checkinId: integer("checkin_id")
+      .notNull()
+      .references(() => checkins.id),
   },
   (t) => ({
-    pk: primaryKey({ columns: [t.userId, t.eventId] }),
+    pk: primaryKey({ columns: [t.eventId, t.checkinId] }),
   }),
 );
 
