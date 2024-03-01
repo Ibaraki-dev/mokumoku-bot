@@ -20,8 +20,8 @@ https://github.com/Ibaraki-dev/mokumoku-bot/assets/11070996/b4dc1a42-5e12-4059-9
 
 さらに、15:00とTech Talkの開始、17:50にもくもく会終了の通知を行う。
 
-![image](https://github.com/Ibaraki-dev/mokumoku-bot/assets/11070996/3f11d35d-5eb0-4fb7-9046-e2ab43d01282)
 ![image](https://github.com/Ibaraki-dev/mokumoku-bot/assets/11070996/3ab98749-5bbb-40f5-a81b-6900e0f12c3a)
+![image](https://github.com/Ibaraki-dev/mokumoku-bot/assets/11070996/3f11d35d-5eb0-4fb7-9046-e2ab43d01282)
 
 ### (wip) `/mokumoku-connpass`
 
