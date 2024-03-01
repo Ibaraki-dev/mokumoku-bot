@@ -37,12 +37,12 @@ https://github.com/Ibaraki-dev/mokumoku-bot/assets/11070996/b4dc1a42-5e12-4059-9
 - [x] huskyかlefthookでcommit時にcheckを実行する
 - [x] mainへのpushでCloudflareへデプロイする
 - [x] Ibaraki-devのorganizationを作成
+- [x] mokumoku-startコマンドの追加
+  - [x] コマンド実行でスケジュールと/checkinコマンドの説明を投稿
+  - [x] 15:00と17:50の時報機能
+- [ ] mokumoku-connpassコマンドの追加
 - [ ] READMEに開発方法を追記
 - [ ] testの追加
 - [ ] commitを整理
 - [ ] contribution.mdの追加
 - [ ] Zennに記事を執筆
-- [ ] mokumoku-startコマンドの追加
-  - [ ] コマンド実行でスケジュールと/checkinコマンドの説明を投稿
-  - [ ] 15:00と17:50の時報機能
-    - 土日の指定時に常に動かして、DBにその日のcheckinが登録されている場合は、通知するとかで良いかも
