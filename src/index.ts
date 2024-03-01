@@ -10,6 +10,7 @@ import { handleModalSubmits } from "./interactions/handleModalSubmit";
 import checkinModal from "./interactions/modalSubmits/checkinModal";
 import { verifyDiscordInteraction } from "./middleware/verifyDiscordInteraction";
 import { CheckinsRepository } from "./repositories/checkinsRepository";
+import { EventsRepository } from "./repositories/eventsRepository";
 import { UsersRepository } from "./repositories/usersRepository";
 import { errorResponse } from "./responses/errorResponse";
 
@@ -34,6 +35,7 @@ app.post("/interaction", verifyDiscordInteraction, async (c) => {
             intentObj: body,
             userRepository: new UsersRepository(c.env.DB),
             checkinsRepository: new CheckinsRepository(c.env.DB),
+            eventsRepository: new EventsRepository(c.env.DB),
             commands: [checkinCommand, mokumokuStartCommand],
           }),
         );
@@ -41,7 +43,7 @@ app.post("/interaction", verifyDiscordInteraction, async (c) => {
         return c.json(
           await handleModalSubmits({
             intentObj: body,
-            userRepository: new UsersRepository(c.env.DB),
+            usersRepository: new UsersRepository(c.env.DB),
             checkinsRepository: new CheckinsRepository(c.env.DB),
             modals: [checkinModal],
           }),

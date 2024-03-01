@@ -6,11 +6,11 @@ import { ModalSubmitObj } from "../handleModalSubmit";
 
 const handler = async ({
   intentObj,
-  userRepository,
+  usersRepository: userRepository,
   checkinsRepository,
 }: {
   intentObj: ModalSubmitObj;
-  userRepository: UsersRepository;
+  usersRepository: UsersRepository;
   checkinsRepository: CheckinsRepository;
 }) => {
   if (!(intentObj.member && intentObj.data)) {

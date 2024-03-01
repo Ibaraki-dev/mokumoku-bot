@@ -1,9 +1,16 @@
 import dayjs from "dayjs";
 import { MOKUMOKU_START_COMMAND_NAME } from "../../constants";
+import { EventsRepository } from "../../repositories/eventsRepository";
 import { buildMokumokuCommandResponse as buildMokumokuStartCommandResponse } from "../../responses/mokumokuStartCommandResponse";
 
-const handler = async () => {
+const handler = async ({
+  eventsRepository,
+}: {
+  eventsRepository: EventsRepository;
+}) => {
   const today = dayjs().tz().format("YYYY年MM月DD日");
+  await eventsRepository.create({ name: "もくもく会" });
+
   return buildMokumokuStartCommandResponse({ date: today });
   /*
   その他メモ

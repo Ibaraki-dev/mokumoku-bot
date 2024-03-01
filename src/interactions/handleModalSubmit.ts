@@ -13,18 +13,18 @@ export type ModalSubmitObj = APIBaseInteraction<
 
 export const handleModalSubmits = async ({
   intentObj,
-  userRepository,
+  usersRepository,
   checkinsRepository,
   modals,
 }: {
   intentObj: ModalSubmitObj;
-  userRepository: UsersRepository;
+  usersRepository: UsersRepository;
   checkinsRepository: CheckinsRepository;
   modals: {
     customId: string;
     handler: (args: {
       intentObj: ModalSubmitObj;
-      userRepository: UsersRepository;
+      usersRepository: UsersRepository;
       checkinsRepository: CheckinsRepository;
     }) => Promise<{
       type: number;
@@ -36,7 +36,7 @@ export const handleModalSubmits = async ({
     if (modal.customId === intentObj.data?.custom_id) {
       return modal.handler({
         intentObj,
-        userRepository,
+        usersRepository,
         checkinsRepository,
       });
     }
