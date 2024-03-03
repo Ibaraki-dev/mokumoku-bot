@@ -58,16 +58,12 @@ https://discord.gg/4XA8EhEseZ
 ### かわまた ([@KawamataRyo](https://twitter.com/KawamataRyo)）
 <img src="https://media.connpass.com/thumbs/6f/c0/6fc09eebebc8d00ca556bb2cc5c8c6e0.png" width="80">
 
-元消防士のソフトウェアエンジニア。2児の父。趣味は個人開発と筋トレ。
-TypeScript, Vue.js, React, Firebase, Cloudflareが好き。
-[GitHub](https://github.com/kawamataryo), [X(Twitter)](https://twitter.com/KawamataRyo), [Zenn](https://zenn.dev/ryo_kawamata)
+元消防士のソフトウェアエンジニア。2児の父。趣味は個人開発と筋トレ。  \n TypeScript, Vue.js, React, Firebase, Cloudflareが好き。  \n[GitHub](https://github.com/kawamataryo), [X(Twitter)](https://twitter.com/KawamataRyo), [Zenn](https://zenn.dev/ryo_kawamata)
 
 ### なっぱ ([@b7472](http://twitter.com/b7472))
 <img src="https://media.connpass.com/thumbs/1d/55/1d55250514576ac77dd1c3b8bc68ae8f.png" width="80">
 
-EC特化でエンジニアを続けてきた32歳。茨城県水戸市でフルリモートのSREをやっている。
-最近のブームはRust, Golang, TypeScriptあたり。趣味は料理。
-茨城のエンジニア界隈を盛り上げていきましょう！！
+EC特化でエンジニアを続けてきた32歳。茨城県水戸市でフルリモートのSREをやっている。  \n最近のブームはRust, Golang, TypeScriptあたり。趣味は料理。  \n茨城のエンジニア界隈を盛り上げていきましょう！！
 
 # :eyes: Q & A
 
@@ -88,10 +84,11 @@ A. 全くありません。何も気にせず気軽に参加してください
 
 #### Q. 会場に駐車場はありますか？
 A.  会場に駐車場がありません。お車でご来場の方は近くの有料駐車場に駐車してください
-・パラカ水戸南町第2 終日最大500円
-・パラカ水戸南町第2 終日最大600円
-・リパーク水戸南町3丁目第2 終日最大600円
-・タイムズ水戸泉町 終日最大600円
+
+* パラカ水戸南町第2 終日最大500円
+* パラカ水戸南町第2 終日最大600円
+* リパーク水戸南町3丁目第2 終日最大600円
+* タイムズ水戸泉町 終日最大600円
 
 #### Q. 過去参加者はどんなことをもくもくしていましたか？
 A. 前回のイベントの参加者は以下のようなことをしていました
@@ -105,9 +102,9 @@ ${todos.join("\n-----------\n")}
 # :police_car_light: その他・注意
 
 ### アンチハラスメントポリシー
-Ibaraki.dev では、アンチハラスメントポリシーを定めています。 なるべく多くの人が楽しめる場を作るために、イベント参加者全員が以下のポリシーに同意していただく必要があります。 もちろん、イベント運営メンバーは、ポリシーに則った態度や言動を徹底します。
+Ibaraki.dev では、アンチハラスメントポリシーを定めています。 なるべく多くの人が楽しめる場を作るために、イベント参加者全員が以下のポリシーに同意していただく必要があります。 もちろん、イベント運営メンバーは、ポリシーに則った態度や言動を徹底します。\n
 
-ハラスメントには以下のようなものを含みます。また、これらに限りません。
+ハラスメントには以下のようなものを含みます。また、これらに限りません。\n
 
 * ジェンダー、性自認やジェンダー表現、性的指向、障碍、容貌、体型、人種、民族、年齢、宗教あるいは無宗教についての攻撃的なコメントをすること
 * 公共のスペースで性的な画像を掲示すること
