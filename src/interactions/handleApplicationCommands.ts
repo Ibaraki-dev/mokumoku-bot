@@ -1,5 +1,5 @@
 import { APIBaseInteraction, InteractionType } from "discord-api-types/v10";
-import { Bindings, Repositories } from "../types";
+import { Bindings, Clients, Repositories } from "../types";
 
 export type ApplicationCommandObj = APIBaseInteraction<
   InteractionType.ApplicationCommand,
@@ -11,17 +11,20 @@ export type ApplicationCommandObj = APIBaseInteraction<
 export const handleApplicationCommands = async ({
   intentObj,
   repositories,
+  clients,
   env,
   commands,
 }: {
   intentObj: ApplicationCommandObj;
   repositories: Repositories;
+  clients: Clients;
   env: Bindings;
   commands: {
     commandName: string;
     handler: (args: {
       intentObj: ApplicationCommandObj;
       repositories: Repositories;
+      clients: Clients;
       env: Bindings;
     }) => Promise<{
       type: number;
@@ -34,6 +37,7 @@ export const handleApplicationCommands = async ({
       return command.handler({
         intentObj,
         repositories,
+        clients,
         env,
       });
     }

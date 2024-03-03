@@ -2,13 +2,11 @@ import {
   APIInteractionResponseChannelMessageWithSource,
   InteractionResponseType,
 } from "discord-api-types/v10";
-import { ConnpassClient } from "../../clients/connpass";
-import { DiscordClient } from "../../clients/discord";
 import {
   CONNPASS_EVENT_PAGE_URL,
   GENERATE_EVENT_DESCRIPTION_COMMAND_NAME,
 } from "../../constants";
-import { Bindings, Repositories } from "../../types";
+import { Bindings, Clients, Repositories } from "../../types";
 import { ApplicationCommandObj } from "../handleApplicationCommands";
 
 const buildDescription = (eventUrl: string, todos: string[]) => {
@@ -120,17 +118,18 @@ Ibaraki.dev では、アンチハラスメントポリシーを定めていま�
 
 const handler = async ({
   intentObj,
+  clients: { discordClient, connpassClient },
   repositories: { eventsRepository },
   env,
 }: {
   intentObj: ApplicationCommandObj;
   repositories: Repositories;
+  clients: Clients;
   env: Bindings;
 }): Promise<APIInteractionResponseChannelMessageWithSource> => {
-  const latestEventUrl =
-    await new ConnpassClient().getLatestEventUrlFromGroupPage(
-      CONNPASS_EVENT_PAGE_URL,
-    );
+  const latestEventUrl = await connpassClient.getLatestEventUrlFromGroupPage(
+    CONNPASS_EVENT_PAGE_URL,
+  );
   const eventWithCheckins =
     await eventsRepository.findLatestEventWithCheckins();
   if (!eventWithCheckins) {
@@ -140,8 +139,7 @@ const handler = async ({
     throw new Error("Invalid interaction");
   }
 
-  const client = new DiscordClient(env.DISCORD_TOKEN);
-  await client.sendTextFile({
+  await discordClient.sendTextFile({
     channelId: intentObj.channel.id,
     file: {
       name: "eventDescription.md",

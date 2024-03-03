@@ -3,7 +3,7 @@ import {
   APIModalSubmission,
   InteractionType,
 } from "discord-api-types/v10";
-import { Repositories } from "../types";
+import { Clients, Repositories } from "../types";
 
 export type ModalSubmitObj = APIBaseInteraction<
   InteractionType.ModalSubmit,
@@ -13,15 +13,18 @@ export type ModalSubmitObj = APIBaseInteraction<
 export const handleModalSubmits = async ({
   intentObj,
   repositories,
+  clients,
   modals,
 }: {
   intentObj: ModalSubmitObj;
   repositories: Repositories;
+  clients: Clients;
   modals: {
     customId: string;
     handler: (args: {
       intentObj: ModalSubmitObj;
       repositories: Repositories;
+      clients: Clients;
     }) => Promise<{
       type: number;
       data: unknown;
@@ -32,6 +35,7 @@ export const handleModalSubmits = async ({
     if (modal.customId === intentObj.data?.custom_id) {
       return modal.handler({
         intentObj,
+        clients,
         repositories,
       });
     }
