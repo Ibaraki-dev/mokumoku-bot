@@ -28,17 +28,12 @@ const handler = async ({
   const profile = intentObj.data.components[0].components[0].value;
   const todo = intentObj.data.components[1].components[0].value;
 
-  const targetUsers = await usersRepository.findByDiscordUserId(
-    intentObj.member.user.id,
-  );
-
   const user =
-    targetUsers.length > 0
-      ? targetUsers[0]
-      : await usersRepository.create({
-          name: intentObj.member.user.username,
-          discordUserId: intentObj.member.user.id,
-        });
+    (await usersRepository.findUserByDiscordUserId(intentObj.member.user.id)) ??
+    (await usersRepository.create({
+      name: intentObj.member.user.username,
+      discordUserId: intentObj.member.user.id,
+    }));
   const checkin = await checkinsRepository.create({
     userId: user.id,
     profile,

@@ -60,6 +60,10 @@ export const events = sqliteTable("events", {
   createdAt: text("created_at").default(sql`CURRENT_TIMESTAMP`),
 });
 
+export const usersRelations = relations(users, ({ many }) => ({
+  checkins: many(checkins),
+}));
+
 export const eventsRelations = relations(events, ({ many }) => ({
   eventsToCheckins: many(eventsToCheckins),
 }));

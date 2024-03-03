@@ -4,12 +4,10 @@ import { checkins, users } from "../schema";
 import { BaseRepository } from "./baseRepository";
 
 export class UsersRepository extends BaseRepository {
-  async findByDiscordUserId(discordUserId: string) {
-    const targetUsers = await this.db
-      .select()
-      .from(users)
-      .where(eq(users.discordUserId, discordUserId));
-    return targetUsers;
+  async findUserByDiscordUserId(discordUserId: string) {
+    return await this.db.query.users.findFirst({
+      where: eq(users.discordUserId, discordUserId),
+    });
   }
 
   async create({
@@ -45,6 +43,6 @@ export class UsersRepository extends BaseRepository {
       .where(eq(users.discordUserId, discordUserId))
       .orderBy(desc(checkins.createdAt))
       .limit(1);
-    return result.length > 0 ? result[0] : null;
+    return result.length > 0 ? result[0] : undefined;
   }
 }
