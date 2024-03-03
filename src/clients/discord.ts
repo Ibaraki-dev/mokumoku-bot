@@ -1,4 +1,9 @@
-import { RESTPostAPIChannelMessageJSONBody } from "discord-api-types/v10";
+import {
+  RESTPatchAPIChannelMessageFormDataBody,
+  RESTPostAPIChannelMessageFormDataBody,
+  RESTPostAPIChannelMessageJSONBody,
+} from "discord-api-types/v10";
+import FormData from "form-data";
 
 export class DiscordClient {
   private BASE_URL = "https://discord.com/api/v10/";
@@ -17,10 +22,46 @@ export class DiscordClient {
     channelId,
     body,
   }: { channelId: string; body: RESTPostAPIChannelMessageJSONBody }) {
-    await fetch(`${this.BASE_URL}/channels/${channelId}/messages`, {
+    const res = await fetch(`${this.BASE_URL}/channels/${channelId}/messages`, {
       method: "POST",
       body: JSON.stringify(body),
       headers: this.config.headers,
     });
+    if (!res.ok) {
+      throw new Error(
+        `Failed to send message: ${res.status} ${res.statusText}`,
+      );
+    }
+  }
+
+  async sendTextFile({
+    channelId,
+    file,
+  }: {
+    channelId: string;
+    file: {
+      content: string;
+      name: string;
+    };
+  }) {
+    const form = new FormData();
+    form.append(
+      "file",
+      new Blob([file.content], { type: "text/plain" }),
+      file.name,
+    );
+
+    const res = await fetch(`${this.BASE_URL}/channels/${channelId}/messages`, {
+      method: "POST",
+      body: form as unknown as BodyInit,
+      headers: {
+        Authorization: this.config.headers.Authorization,
+      },
+    });
+    if (!res.ok) {
+      throw new Error(
+        `Failed to send message: ${res.status} ${res.statusText}`,
+      );
+    }
   }
 }

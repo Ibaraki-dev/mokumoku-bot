@@ -9,3 +9,9 @@ export type Repositories = {
   eventsRepository: EventsRepository;
   eventsToCheckinsRepository: EventsToCheckinsRepository;
 };
+
+export type Bindings = {
+  DB: D1Database;
+  DISCORD_TOKEN: string;
+  MOKUMOKU_CHANNEL_ID: string;
+};

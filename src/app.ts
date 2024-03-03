@@ -1,6 +1,7 @@
 import { InteractionType } from "discord-interactions";
 import { Hono } from "hono";
 import checkinCommand from "./interactions/applicationCommands/checkin";
+import generateEventDescription from "./interactions/applicationCommands/generateEventDescription";
 import mokumokuStartCommand from "./interactions/applicationCommands/mokumokuStart";
 import { handleApplicationCommands } from "./interactions/handleApplicationCommands";
 import { handleModalSubmits } from "./interactions/handleModalSubmit";
@@ -11,10 +12,7 @@ import { EventsRepository } from "./repositories/eventsRepository";
 import { EventsToCheckinsRepository } from "./repositories/eventsToCheckinsRepository";
 import { UsersRepository } from "./repositories/usersRepository";
 import { errorResponse } from "./responses/errorResponse";
-
-type Bindings = {
-  DB: D1Database;
-};
+import { Bindings } from "./types";
 
 const app = new Hono<{ Bindings: Bindings }>();
 
@@ -35,7 +33,12 @@ app.post("/interaction", verifyDiscordInteraction, async (c) => {
           await handleApplicationCommands({
             repositories,
             intentObj: body,
-            commands: [checkinCommand, mokumokuStartCommand],
+            env: c.env,
+            commands: [
+              checkinCommand,
+              mokumokuStartCommand,
+              generateEventDescription,
+            ],
           }),
         );
       case InteractionType.MODAL_SUBMIT:

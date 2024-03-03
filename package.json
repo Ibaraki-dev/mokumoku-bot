@@ -11,6 +11,7 @@
     "discord-api-types": "^0.37.70",
     "discord-interactions": "^3.4.0",
     "drizzle-orm": "^0.29.4",
+    "form-data": "^4.0.0",
     "hono": "^4.0.5",
     "lefthook": "^1.6.3"
   },

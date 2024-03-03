@@ -1,4 +1,4 @@
-import { sql } from "drizzle-orm";
+import { relations, sql } from "drizzle-orm";
 import {
   index,
   integer,
@@ -59,3 +59,25 @@ export const events = sqliteTable("events", {
   date: text("date").notNull(),
   createdAt: text("created_at").default(sql`CURRENT_TIMESTAMP`),
 });
+
+export const eventsRelations = relations(events, ({ many }) => ({
+  eventsToCheckins: many(eventsToCheckins),
+}));
+
+export const checkinsRelations = relations(checkins, ({ many }) => ({
+  eventsToCheckins: many(eventsToCheckins),
+}));
+
+export const eventsToCheckinsRelations = relations(
+  eventsToCheckins,
+  ({ one }) => ({
+    event: one(events, {
+      fields: [eventsToCheckins.eventId],
+      references: [events.id],
+    }),
+    checkin: one(checkins, {
+      fields: [eventsToCheckins.checkinId],
+      references: [checkins.id],
+    }),
+  }),
+);
