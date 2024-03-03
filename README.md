@@ -28,3 +28,10 @@ https://github.com/Ibaraki-dev/mokumoku-bot/assets/11070996/b4dc1a42-5e12-4059-9
 `/generate-event-description`で前回のイベントのチェックイン内容をもとにconnpassのイベント概要文を作成する。
 
 <img src="https://github.com/Ibaraki-dev/mokumoku-bot/assets/11070996/e48b23a4-aaef-41dd-b56a-87636c69a33b" width="500">
+
+
+## 💖 Thanks
+
+- [Hono](https://hono.dev/)
+- [Cloudflare](https://www.cloudflare.com/)
+- [bun](https://bun.sh/)
