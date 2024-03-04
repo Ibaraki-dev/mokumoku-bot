@@ -1,5 +1,9 @@
 # MokuMoku Bot
 
+![Discord](https://img.shields.io/discord/1110091489469530132?style=flat-square&logo=discord&label=Discord) ![test](https://github.com/ibaraki-dev/mokumoku-bot/actions/workflows/test.yml/badge.svg) ![deploy](https://github.com/ibaraki-dev/mokumoku-bot/actions/workflows/deploy.yml/badge.svg)
+
+
+
 [Ibaraki.dev](https://discord.gg/4XA8EhEseZ) のもくもく会で使うDiscord Botです。
 
 
