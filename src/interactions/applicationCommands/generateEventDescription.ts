@@ -9,7 +9,7 @@ import {
 import { Bindings, Clients, Repositories } from "../../types";
 import { ApplicationCommandObj } from "../handleApplicationCommands";
 
-const buildDescription = (eventUrl: string, todos: string[]) => {
+export const buildDescription = (eventUrl: string, todos: string[]) => {
   return `
 # :memo: 概要
 
@@ -120,12 +120,10 @@ const handler = async ({
   intentObj,
   clients: { discordClient, connpassClient },
   repositories: { eventsRepository },
-  env,
 }: {
   intentObj: ApplicationCommandObj;
   repositories: Repositories;
   clients: Clients;
-  env: Bindings;
 }): Promise<APIInteractionResponseChannelMessageWithSource> => {
   const latestEventUrl = await connpassClient.getLatestEventUrlFromGroupPage(
     CONNPASS_EVENT_PAGE_URL,

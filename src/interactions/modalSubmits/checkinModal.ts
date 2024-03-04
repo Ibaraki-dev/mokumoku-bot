@@ -4,7 +4,7 @@ import { Repositories } from "../../types";
 import { ModalSubmitObj } from "../handleModalSubmit";
 
 const handler = async ({
-  intentObj,
+  modalSubmitObj,
   repositories: {
     usersRepository,
     eventsRepository,
@@ -12,10 +12,10 @@ const handler = async ({
     eventsToCheckinsRepository,
   },
 }: {
-  intentObj: ModalSubmitObj;
+  modalSubmitObj: ModalSubmitObj;
   repositories: Repositories;
 }) => {
-  if (!(intentObj.member && intentObj.data)) {
+  if (!(modalSubmitObj.member && modalSubmitObj.data)) {
     throw new Error("Invalid interaction");
   }
   const todayEvent = await eventsRepository.findTodayEvent();
@@ -25,14 +25,16 @@ const handler = async ({
     );
   }
 
-  const profile = intentObj.data.components[0].components[0].value;
-  const todo = intentObj.data.components[1].components[0].value;
+  const profile = modalSubmitObj.data.components[0].components[0].value;
+  const todo = modalSubmitObj.data.components[1].components[0].value;
 
   const user =
-    (await usersRepository.findUserByDiscordUserId(intentObj.member.user.id)) ??
+    (await usersRepository.findUserByDiscordUserId(
+      modalSubmitObj.member.user.id,
+    )) ??
     (await usersRepository.create({
-      name: intentObj.member.user.username,
-      discordUserId: intentObj.member.user.id,
+      name: modalSubmitObj.member.user.username,
+      discordUserId: modalSubmitObj.member.user.id,
     }));
   const checkin = await checkinsRepository.create({
     userId: user.id,
@@ -45,7 +47,7 @@ const handler = async ({
   });
 
   return buildCheckinModalSubmitResponse({
-    member: intentObj.member,
+    member: modalSubmitObj.member,
     profile,
     todo,
   });
