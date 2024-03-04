@@ -41,7 +41,6 @@ app.post("/interaction", verifyDiscordInteraction, async (c) => {
             repositories,
             clients,
             intentObj: body,
-            env: c.env,
             commands: [
               checkinCommand,
               mokumokuStartCommand,
@@ -54,7 +53,7 @@ app.post("/interaction", verifyDiscordInteraction, async (c) => {
           await handleModalSubmits({
             repositories,
             clients,
-            intentObj: body,
+            modalSubmitObj: body,
             modals: [checkinModal],
           }),
         );

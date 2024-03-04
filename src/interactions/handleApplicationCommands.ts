@@ -12,20 +12,17 @@ export const handleApplicationCommands = async ({
   intentObj,
   repositories,
   clients,
-  env,
   commands,
 }: {
   intentObj: ApplicationCommandObj;
   repositories: Repositories;
   clients: Clients;
-  env: Bindings;
   commands: {
     commandName: string;
     handler: (args: {
       intentObj: ApplicationCommandObj;
       repositories: Repositories;
       clients: Clients;
-      env: Bindings;
     }) => Promise<{
       type: number;
       data: unknown;
