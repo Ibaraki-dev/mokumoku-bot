@@ -5,6 +5,10 @@ import { ModalSubmitObj } from "../handleModalSubmit";
 import checkinModal from "./checkinModal";
 
 describe("handler", () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
   it("should throw an error if modalSubmitObj.member or modalSubmitObj.data is not present", async () => {
     const repositories = {
       usersRepository: {},

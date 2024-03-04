@@ -13,7 +13,7 @@ vi.mock("dayjs", () => ({
 
 describe("handler", () => {
   beforeEach(() => {
-    vi.resetAllMocks();
+    vi.clearAllMocks();
   });
 
   it("should create new Event if today's event is not found", async () => {

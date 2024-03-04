@@ -1,14 +1,10 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { buildCheckinModalResponse } from "../../responses/checkinCommandResponse";
 import { Repositories } from "../../types";
 import { ApplicationCommandObj } from "../handleApplicationCommands";
 import checkinCommand from "./checkin";
 
 describe("handler function", () => {
-  beforeEach(() => {
-    vi.resetAllMocks();
-  });
-
   it("should throw an error when member is not present", async () => {
     const intentObj = {} as ApplicationCommandObj;
     const repositories = {

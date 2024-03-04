@@ -6,7 +6,7 @@ import generateEventDescriptionCommand from "./generateEventDescription";
 
 describe("handler", () => {
   beforeEach(() => {
-    vi.resetAllMocks();
+    vi.clearAllMocks();
   });
 
   it("should throw an error if no previous event is found", async () => {

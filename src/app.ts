@@ -18,54 +18,57 @@ import { Bindings, Clients, Repositories } from "./types";
 
 const app = new Hono<{ Bindings: Bindings }>();
 
-app.post("/interaction", verifyDiscordInteraction, async (c) => {
-  const body = await c.req.json();
+export const interactionRoot = app.post(
+  "/interaction",
+  verifyDiscordInteraction,
+  async (c) => {
+    const body = await c.req.json();
 
-  const repositories: Repositories = {
-    usersRepository: new UsersRepository(c.env.DB),
-    checkinsRepository: new CheckinsRepository(c.env.DB),
-    eventsRepository: new EventsRepository(c.env.DB),
-    eventsToCheckinsRepository: new EventsToCheckinsRepository(c.env.DB),
-  };
+    const repositories: Repositories = {
+      usersRepository: new UsersRepository(c.env.DB),
+      checkinsRepository: new CheckinsRepository(c.env.DB),
+      eventsRepository: new EventsRepository(c.env.DB),
+      eventsToCheckinsRepository: new EventsToCheckinsRepository(c.env.DB),
+    };
 
-  const clients: Clients = {
-    discordClient: new DiscordClient(c.env.DISCORD_TOKEN),
-    connpassClient: new ConnpassClient(),
-  };
+    const clients: Clients = {
+      discordClient: new DiscordClient(c.env.DISCORD_TOKEN),
+      connpassClient: new ConnpassClient(),
+    };
 
-  try {
-    switch (body.type) {
-      case InteractionType.APPLICATION_COMMAND:
-        return c.json(
-          await handleApplicationCommands({
-            repositories,
-            clients,
-            intentObj: body,
-            commands: [
-              checkinCommand,
-              mokumokuStartCommand,
-              generateEventDescription,
-            ],
-          }),
-        );
-      case InteractionType.MODAL_SUBMIT:
-        return c.json(
-          await handleModalSubmits({
-            repositories,
-            clients,
-            modalSubmitObj: body,
-            modals: [checkinModal],
-          }),
-        );
-      default:
-        throw new Error("Invalid interaction");
+    try {
+      switch (body.type) {
+        case InteractionType.APPLICATION_COMMAND:
+          return c.json(
+            await handleApplicationCommands({
+              repositories,
+              clients,
+              intentObj: body,
+              commands: [
+                checkinCommand,
+                mokumokuStartCommand,
+                generateEventDescription,
+              ],
+            }),
+          );
+        case InteractionType.MODAL_SUBMIT:
+          return c.json(
+            await handleModalSubmits({
+              repositories,
+              clients,
+              modalSubmitObj: body,
+              modals: [checkinModal],
+            }),
+          );
+        default:
+          throw new Error("Invalid interaction");
+      }
+    } catch (e) {
+      return c.json(
+        errorResponse(e instanceof Error ? e.message : "Unknown error"),
+      );
     }
-  } catch (e) {
-    console.error(e);
-    return c.json(
-      errorResponse(e instanceof Error ? e.message : "Unknown error"),
-    );
-  }
-});
+  },
+);
 
 export default app;
