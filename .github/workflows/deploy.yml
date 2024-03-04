@@ -11,6 +11,8 @@ jobs:
     name: Test
     steps:
       - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v1
+      - run: bun install
       - name: Test
         run: bun run test
   deploy:
