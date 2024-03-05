@@ -4,8 +4,10 @@
 
 
 
-[Ibaraki.dev](https://discord.gg/4XA8EhEseZ) のもくもく会で使うDiscord Botです。
+[Ibaraki.dev](https://mito-web-engineer.connpass.com/) のもくもく会で使うDiscord Botです。
 
+- [Connpass](https://mito-web-engineer.connpass.com/)
+- [Discord](https://discord.gg/4XA8EhEseZ)
 
 ## 🚀 Features
 
