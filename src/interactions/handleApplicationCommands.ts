@@ -35,7 +35,6 @@ export const handleApplicationCommands = async ({
         intentObj,
         repositories,
         clients,
-        env,
       });
     }
   }
