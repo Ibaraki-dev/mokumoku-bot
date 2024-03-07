@@ -17,7 +17,7 @@ const scheduled: ExportedHandler<Bindings>["scheduled"] = async (
   const isEventDay = !!(await eventsRepository.findTodayEvent());
 
   switch (event.cron) {
-    case "0 6 * * *":
+    case "0 6 * * SAT,SUN":
       if (isEventDay) {
         await client.sendMessage({
           channelId: env.MOKUMOKU_CHANNEL_ID,
@@ -28,7 +28,7 @@ const scheduled: ExportedHandler<Bindings>["scheduled"] = async (
         });
       }
       break;
-    case "50 8 * * *":
+    case "50 8 * * SAT,SUN":
       if (isEventDay) {
         await client.sendMessage({
           channelId: env.MOKUMOKU_CHANNEL_ID,
