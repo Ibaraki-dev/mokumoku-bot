@@ -29,6 +29,27 @@
       "when": 1709266132201,
       "tag": "0003_free_dakota_north",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1737441540310,
+      "tag": "0004_nervous_shinobi_shaw",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1737442754874,
+      "tag": "0005_lethal_vin_gonzales",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1737443118977,
+      "tag": "0006_shiny_speed",
+      "breakpoints": true
     }
   ]
 }

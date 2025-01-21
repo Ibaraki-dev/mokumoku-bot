@@ -1,8 +1,6 @@
 # MokuMoku Bot
 
-![Discord](https://img.shields.io/discord/1110091489469530132?style=flat-square&logo=discord&label=Discord) ![test](https://github.com/lapras-inc/mokumoku-bot/actions/workflows/test.yml/badge.svg) ![deploy](https://github.com/lapras-inc/mokumoku-bot/actions/workflows/deploy.yml/badge.svg)
-
-
+![Discord](https://img.shields.io/discord/1110091489469530132?style=flat-square&logo=discord&label=Discord) 
 
 [LAPRASもくもく会](https://lapras.connpass.com/) で使うDiscord Botです。
 
@@ -28,7 +26,26 @@ https://github.com/Ibaraki-dev/mokumoku-bot/assets/11070996/b4dc1a42-5e12-4059-9
 <img src="https://github.com/Ibaraki-dev/mokumoku-bot/assets/11070996/3ab98749-5bbb-40f5-a81b-6900e0f12c3a" width="450">
 <img src="https://github.com/Ibaraki-dev/mokumoku-bot/assets/11070996/3f11d35d-5eb0-4fb7-9046-e2ab43d01282" width="450">
 
+## 🔧 Development
 
+
+### テーブルの変更
+
+`src/schema.ts` を変更後、マイグレーションファイルを作成
+
+```
+pnpm run generate
+```
+
+マイグレーションファイルを適用
+
+```
+# ローカル
+pnpm run migrate:local
+
+# 本番
+pnpm run migrate:prod
+```
 
 ## 💖 Thanks
 

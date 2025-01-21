@@ -1,0 +1,1 @@
+ALTER TABLE events ADD `schedule` text NOT NULL;

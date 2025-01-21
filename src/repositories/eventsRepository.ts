@@ -10,6 +10,12 @@ export class EventsRepository extends BaseRepository {
     });
   }
 
+  async findLatestEvent() {
+    return await this.db.query.events.findFirst({
+      orderBy: [desc(events.createdAt)],
+    });
+  }
+
   async findLatestEventWithCheckins() {
     return await this.db.query.events.findFirst({
       orderBy: [desc(events.createdAt)],
@@ -25,11 +31,14 @@ export class EventsRepository extends BaseRepository {
 
   async create({
     name,
+    schedule,
   }: {
     name: string;
+    schedule: string;
   }) {
     await this.db.insert(events).values({
       name,
+      schedule,
       date: dayjs().tz().format("YYYY-MM-DD"),
       createdAt: dayjs().tz().format(),
     });

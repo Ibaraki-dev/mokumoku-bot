@@ -7,6 +7,7 @@ import mokumokuStartCommand from "./interactions/applicationCommands/mokumokuSta
 import { handleApplicationCommands } from "./interactions/handleApplicationCommands";
 import { handleModalSubmits } from "./interactions/handleModalSubmit";
 import checkinModal from "./interactions/modalSubmits/checkinModal";
+import mokumokuStartModal from "./interactions/modalSubmits/mokumokuStartModal";
 import { verifyDiscordInteraction } from "./middleware/verifyDiscordInteraction";
 import { CheckinsRepository } from "./repositories/checkinsRepository";
 import { EventsRepository } from "./repositories/eventsRepository";
@@ -52,7 +53,7 @@ export const interactionRoot = app.post(
               repositories,
               clients,
               modalSubmitObj: body,
-              modals: [checkinModal],
+              modals: [checkinModal, mokumokuStartModal],
             }),
           );
         default:

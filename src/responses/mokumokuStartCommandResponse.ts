@@ -1,51 +1,53 @@
 import {
-  APIInteractionResponseChannelMessageWithSource,
+  APIModalInteractionResponse,
+  ComponentType,
   InteractionResponseType,
+  TextInputStyle,
 } from "discord-api-types/v10";
+import { MOKUMOKU_START_MODAL_CUSTOM_ID } from "../constants";
 
-const contentText = (date: string) =>
-  `
-${date}のIbaraki.devを開始します！
-準備ができたら \`/checkin\` コマンドで今日やることを投稿してください！
-`.trim();
-
-const scheduleText = () =>
-  `
-**\`13:00〜13: 15\`** チェックイン（自己紹介・やること共有）
-**\`13: 15〜15:00\`** もくもく作業
-**\`15:00〜15: 30\`** LT or テックトーク
-**\`15: 30〜17: 50\`** もくもく作業
-**\`17: 50〜18:00\`** やったこと共有 & 片付け
-**\`18:00〜\`**           懇親会（希望者のみ）
-`.trim();
-
-const checkinText = () =>
-  `
-メッセージ欄に\`/ chekcin\` と入力してEnterを押すと、モーダルが表示されます。そのモーダルに自己紹介と今日やることを入力して送信すると、チェックインが投稿されます。
-`.trim();
-
-export const buildMokumokuCommandResponse = ({
-  date,
+export const buildMokumokuStartCommandResponse = ({
+  prevName,
+  prevSchedule,
 }: {
-  date: string;
-}): APIInteractionResponseChannelMessageWithSource => {
+  prevName?: string;
+  prevSchedule?: string;
+}): APIModalInteractionResponse => {
   return {
-    type: InteractionResponseType.ChannelMessageWithSource,
+    type: InteractionResponseType.Modal,
     data: {
-      content: contentText(date),
-      embeds: [
+      custom_id: MOKUMOKU_START_MODAL_CUSTOM_ID,
+      title: "イベント概要",
+      components: [
         {
-          thumbnail: {
-            url: "https://avatars.githubusercontent.com/u/161560614?s=200&v=4",
-          },
-          fields: [
+          type: ComponentType.ActionRow,
+          components: [
             {
-              name: "🕗 スケジュール",
-              value: scheduleText(),
+              type: ComponentType.TextInput,
+              custom_id: "name",
+              label: "イベント名",
+              style: TextInputStyle.Short,
+              min_length: 1,
+              max_length: 512,
+              required: true,
+              value: prevName,
+              placeholder: "LAPRASもくもく会",
             },
+          ],
+        },
+        {
+          type: ComponentType.ActionRow,
+          components: [
             {
-              name: "📝 checkinコマンド",
-              value: checkinText(),
+              type: ComponentType.TextInput,
+              custom_id: "schedule",
+              label: "イベントスケジュール",
+              style: TextInputStyle.Paragraph,
+              min_length: 1,
+              max_length: 512,
+              required: true,
+              value: prevSchedule,
+              placeholder: "* 18:30〜19:00 受付\n* 19:00〜21:00 もくもく作業",
             },
           ],
         },

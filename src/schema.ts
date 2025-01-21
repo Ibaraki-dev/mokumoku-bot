@@ -57,6 +57,7 @@ export const events = sqliteTable("events", {
   id: integer("id").primaryKey(),
   name: text("name").notNull(),
   date: text("date").notNull(),
+  schedule: text("schedule").notNull(),
   createdAt: text("created_at").default(sql`CURRENT_TIMESTAMP`),
 });
 
