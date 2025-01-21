@@ -8,8 +8,3 @@ binding = "DB"
 database_name = "prod-mokumoku-bot"
 database_id = "1e7cb02f-b32c-482a-a49f-5ce46e14b502"
 migrations_dir = "drizzle"
-
-[triggers]
-# triggersはUTC指定なので、時差を考慮して設定
-# 日本時間の15:00と、17:50に実行
-crons = [ "0 6 * * SAT,SUN", "50 8 * * SAT,SUN"]
