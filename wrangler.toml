@@ -6,5 +6,5 @@ minify = true
 [[d1_databases]]
 binding = "DB"
 database_name = "prod-mokumoku-bot"
-database_id = "{D1_DATABASE_ID}"
+database_id = "6220dbaa-af06-4505-953c-5b8af27697b3"
 migrations_dir = "drizzle"
