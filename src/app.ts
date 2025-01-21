@@ -3,7 +3,6 @@ import { Hono } from "hono";
 import { ConnpassClient } from "./clients/connpass";
 import { DiscordClient } from "./clients/discord";
 import checkinCommand from "./interactions/applicationCommands/checkin";
-import generateEventDescription from "./interactions/applicationCommands/generateEventDescription";
 import mokumokuStartCommand from "./interactions/applicationCommands/mokumokuStart";
 import { handleApplicationCommands } from "./interactions/handleApplicationCommands";
 import { handleModalSubmits } from "./interactions/handleModalSubmit";
@@ -44,11 +43,7 @@ export const interactionRoot = app.post(
               repositories,
               clients,
               intentObj: body,
-              commands: [
-                checkinCommand,
-                mokumokuStartCommand,
-                generateEventDescription,
-              ],
+              commands: [checkinCommand, mokumokuStartCommand],
             }),
           );
         case InteractionType.MODAL_SUBMIT:
