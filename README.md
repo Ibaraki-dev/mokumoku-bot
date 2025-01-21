@@ -1,13 +1,13 @@
 # MokuMoku Bot
 
-![Discord](https://img.shields.io/discord/1110091489469530132?style=flat-square&logo=discord&label=Discord) ![test](https://github.com/ibaraki-dev/mokumoku-bot/actions/workflows/test.yml/badge.svg) ![deploy](https://github.com/ibaraki-dev/mokumoku-bot/actions/workflows/deploy.yml/badge.svg)
+![Discord](https://img.shields.io/discord/1110091489469530132?style=flat-square&logo=discord&label=Discord) ![test](https://github.com/lapras-inc/mokumoku-bot/actions/workflows/test.yml/badge.svg) ![deploy](https://github.com/lapras-inc/mokumoku-bot/actions/workflows/deploy.yml/badge.svg)
 
 
 
-[Ibaraki.dev](https://mito-web-engineer.connpass.com/) のもくもく会で使うDiscord Botです。
+[LAPRASもくもく会](https://lapras.connpass.com/) で使うDiscord Botです。
 
-- [Connpass](https://mito-web-engineer.connpass.com/)
-- [Discord](https://discord.gg/4XA8EhEseZ)
+- [Connpass](https://lapras.connpass.com/)
+- [Discord](https://discord.gg/nEpKzXBkkC)
 
 ## 🚀 Features
 
@@ -28,11 +28,6 @@ https://github.com/Ibaraki-dev/mokumoku-bot/assets/11070996/b4dc1a42-5e12-4059-9
 <img src="https://github.com/Ibaraki-dev/mokumoku-bot/assets/11070996/3ab98749-5bbb-40f5-a81b-6900e0f12c3a" width="450">
 <img src="https://github.com/Ibaraki-dev/mokumoku-bot/assets/11070996/3f11d35d-5eb0-4fb7-9046-e2ab43d01282" width="450">
 
-### `/generate-event-description` コマンド
-
-`/generate-event-description`で前回のイベントのチェックイン内容をもとにconnpassのイベント概要文を作成する。
-
-<img src="https://github.com/Ibaraki-dev/mokumoku-bot/assets/11070996/e48b23a4-aaef-41dd-b56a-87636c69a33b" width="500">
 
 
 ## 💖 Thanks
