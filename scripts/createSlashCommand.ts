@@ -28,7 +28,7 @@ const main = async () => {
     Authorization: `Bot ${Bun.env.DISCORD_TOKEN}`,
   };
 
-  const url = `https://discord.com/api/v10/applications/${Bun.env.DISCORD_APPLICATION_ID}/guilds/1331048559855931414/commands`;
+  const url = `https://discord.com/api/v10/applications/${Bun.env.DISCORD_APPLICATION_ID}/guilds/${Bun.env.DISCORD_GUILD_ID}/commands`;
 
   const res = await fetch(url, {
     method: "POST",

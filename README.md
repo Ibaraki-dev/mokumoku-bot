@@ -28,6 +28,14 @@ https://github.com/Ibaraki-dev/mokumoku-bot/assets/11070996/b4dc1a42-5e12-4059-9
 
 ## 🔧 Development
 
+### デプロイ
+
+WranglerでLAPRAS Cloudflareのアカウントにログイン後デプロイコマンドを実行
+
+```
+wrangler login
+wrangler deploy
+```
 
 ### テーブルの変更
 
@@ -44,6 +52,7 @@ pnpm run generate
 pnpm run migrate:local
 
 # 本番
+# 適応にはwranglerでのログインが必要
 pnpm run migrate:prod
 ```
 
