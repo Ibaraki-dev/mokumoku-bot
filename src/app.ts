@@ -3,13 +3,16 @@ import { Hono } from "hono";
 import { ConnpassClient } from "./clients/connpass";
 import { DiscordClient } from "./clients/discord";
 import checkinCommand from "./interactions/applicationCommands/checkin";
+import checkoutCommand from "./interactions/applicationCommands/checkout";
 import mokumokuStartCommand from "./interactions/applicationCommands/mokumokuStart";
 import { handleApplicationCommands } from "./interactions/handleApplicationCommands";
 import { handleModalSubmits } from "./interactions/handleModalSubmit";
 import checkinModal from "./interactions/modalSubmits/checkinModal";
+import checkoutModal from "./interactions/modalSubmits/checkoutModal";
 import mokumokuStartModal from "./interactions/modalSubmits/mokumokuStartModal";
 import { verifyDiscordInteraction } from "./middleware/verifyDiscordInteraction";
 import { CheckinsRepository } from "./repositories/checkinsRepository";
+import { CheckoutsRepository } from "./repositories/checkoutsRepository";
 import { EventsRepository } from "./repositories/eventsRepository";
 import { EventsToCheckinsRepository } from "./repositories/eventsToCheckinsRepository";
 import { UsersRepository } from "./repositories/usersRepository";
@@ -27,6 +30,7 @@ export const interactionRoot = app.post(
     const repositories: Repositories = {
       usersRepository: new UsersRepository(c.env.DB),
       checkinsRepository: new CheckinsRepository(c.env.DB),
+      checkoutsRepository: new CheckoutsRepository(c.env.DB),
       eventsRepository: new EventsRepository(c.env.DB),
       eventsToCheckinsRepository: new EventsToCheckinsRepository(c.env.DB),
     };
@@ -44,7 +48,7 @@ export const interactionRoot = app.post(
               repositories,
               clients,
               intentObj: body,
-              commands: [checkinCommand, mokumokuStartCommand],
+              commands: [checkinCommand, mokumokuStartCommand, checkoutCommand],
             }),
           );
         case InteractionType.MODAL_SUBMIT:
@@ -53,7 +57,7 @@ export const interactionRoot = app.post(
               repositories,
               clients,
               modalSubmitObj: body,
-              modals: [checkinModal, mokumokuStartModal],
+              modals: [checkinModal, mokumokuStartModal, checkoutModal],
             }),
           );
         default:

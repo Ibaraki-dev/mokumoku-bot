@@ -38,6 +38,22 @@ export const checkins = sqliteTable(
   }),
 );
 
+export const checkouts = sqliteTable(
+  "checkouts",
+  {
+    id: integer("id").primaryKey(),
+    date: text("date").default(sql`CURRENT_DATE`),
+    userId: integer("user_id")
+      .notNull()
+      .references(() => users.id),
+    content: text("content").notNull(),
+    createdAt: text("created_at").default(sql`CURRENT_TIMESTAMP`),
+  },
+  (checkouts) => ({
+    userIdIdx: index("checkouts_userId_idx").on(checkouts.userId),
+  }),
+);
+
 export const eventsToCheckins = sqliteTable(
   "events_to_checkins",
   {
@@ -86,3 +102,10 @@ export const eventsToCheckinsRelations = relations(
     }),
   }),
 );
+
+export const checkoutsRelations = relations(checkouts, ({ one }) => ({
+  checkin: one(checkins, {
+    fields: [checkouts.userId],
+    references: [checkins.userId],
+  }),
+}));

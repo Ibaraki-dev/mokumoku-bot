@@ -50,6 +50,27 @@
       "when": 1737443118977,
       "tag": "0006_shiny_speed",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "5",
+      "when": 1737543247269,
+      "tag": "0007_confused_gabe_jones",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "5",
+      "when": 1737546646089,
+      "tag": "0008_foamy_forge",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "5",
+      "when": 1737546709006,
+      "tag": "0009_light_radioactive_man",
+      "breakpoints": true
     }
   ]
 }

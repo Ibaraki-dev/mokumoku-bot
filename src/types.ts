@@ -1,6 +1,7 @@
 import { ConnpassClient } from "./clients/connpass";
 import { DiscordClient } from "./clients/discord";
 import { CheckinsRepository } from "./repositories/checkinsRepository";
+import { CheckoutsRepository } from "./repositories/checkoutsRepository";
 import { EventsRepository } from "./repositories/eventsRepository";
 import { EventsToCheckinsRepository } from "./repositories/eventsToCheckinsRepository";
 import { UsersRepository } from "./repositories/usersRepository";
@@ -8,6 +9,7 @@ import { UsersRepository } from "./repositories/usersRepository";
 export type Repositories = {
   usersRepository: UsersRepository;
   checkinsRepository: CheckinsRepository;
+  checkoutsRepository: CheckoutsRepository;
   eventsRepository: EventsRepository;
   eventsToCheckinsRepository: EventsToCheckinsRepository;
 };
