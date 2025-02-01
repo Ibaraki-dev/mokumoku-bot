@@ -5,18 +5,17 @@ import {
 } from "discord-api-types/v10";
 import { getColorFromUsername } from "../utils/getColorFromUsername";
 
+// todo: 共通化
 const buildMemberProfileImageURL = (member: APIInteractionGuildMember) => {
   return `https://cdn.discordapp.com/avatars/${member.user.id}/${member.user.avatar}.png`;
 };
 
-export const buildCheckinModalSubmitResponse = ({
+export const buildCheckoutModalSubmitResponse = ({
   member,
-  profile,
-  todo,
+  content,
 }: {
   member: APIInteractionGuildMember;
-  profile: string;
-  todo: string;
+  content: string;
 }): APIInteractionResponseChannelMessageWithSource => {
   const thumbnailURL = buildMemberProfileImageURL(member);
   return {
@@ -35,20 +34,8 @@ export const buildCheckinModalSubmitResponse = ({
           },
           fields: [
             {
-              name: "👤 自己紹介",
-              value: profile,
-            },
-            {
-              name: "",
-              value: "",
-            },
-            {
-              name: "📚 今日やること",
-              value: todo,
-            },
-            {
-              name: "",
-              value: "",
+              name: "💪 今日やったこと",
+              value: content,
             },
           ],
         },

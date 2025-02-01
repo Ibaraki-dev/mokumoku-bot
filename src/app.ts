@@ -3,13 +3,16 @@ import { Hono } from "hono";
 import { ConnpassClient } from "./clients/connpass";
 import { DiscordClient } from "./clients/discord";
 import checkinCommand from "./interactions/applicationCommands/checkin";
+import checkoutCommand from "./interactions/applicationCommands/checkout";
 import generateEventDescription from "./interactions/applicationCommands/generateEventDescription";
 import mokumokuStartCommand from "./interactions/applicationCommands/mokumokuStart";
 import { handleApplicationCommands } from "./interactions/handleApplicationCommands";
 import { handleModalSubmits } from "./interactions/handleModalSubmit";
 import checkinModal from "./interactions/modalSubmits/checkinModal";
+import checkoutModal from "./interactions/modalSubmits/checkoutModal";
 import { verifyDiscordInteraction } from "./middleware/verifyDiscordInteraction";
 import { CheckinsRepository } from "./repositories/checkinsRepository";
+import { CheckoutsRepository } from "./repositories/checkout";
 import { EventsRepository } from "./repositories/eventsRepository";
 import { EventsToCheckinsRepository } from "./repositories/eventsToCheckinsRepository";
 import { UsersRepository } from "./repositories/usersRepository";
@@ -29,6 +32,7 @@ export const interactionRoot = app.post(
       checkinsRepository: new CheckinsRepository(c.env.DB),
       eventsRepository: new EventsRepository(c.env.DB),
       eventsToCheckinsRepository: new EventsToCheckinsRepository(c.env.DB),
+      checkoutsRepository: new CheckoutsRepository(c.env.DB),
     };
 
     const clients: Clients = {
@@ -48,6 +52,7 @@ export const interactionRoot = app.post(
                 checkinCommand,
                 mokumokuStartCommand,
                 generateEventDescription,
+                checkoutCommand,
               ],
             }),
           );
@@ -57,7 +62,7 @@ export const interactionRoot = app.post(
               repositories,
               clients,
               modalSubmitObj: body,
-              modals: [checkinModal],
+              modals: [checkinModal, checkoutModal],
             }),
           );
         default:
