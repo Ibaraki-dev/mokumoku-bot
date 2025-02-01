@@ -17,6 +17,10 @@
 
 https://github.com/Ibaraki-dev/mokumoku-bot/assets/11070996/b4dc1a42-5e12-4059-989b-2543d3ca31c3
 
+### `/checkout` コマンド
+
+`/checkout` で今日やったことを入力するモーダルが表示される。モーダルで入力した内容は、フォーマットされてチャンネルに投稿される。
+
 ### `/mokumoku-start` コマンド
 
 `/mokumoku-start` でもくもく会のスケジュールと、`/checkin`コマンドの説明を投稿する。
