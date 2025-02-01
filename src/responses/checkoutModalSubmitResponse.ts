@@ -4,10 +4,12 @@ import {
   InteractionResponseType,
 } from "discord-api-types/v10";
 
+// todo: 共通化
 const buildMemberProfileImageURL = (member: APIInteractionGuildMember) => {
   return `https://cdn.discordapp.com/avatars/${member.user.id}/${member.user.avatar}.png`;
 };
 
+// todo: 共通化
 const getColorFromUsername = (username: string) => {
   let hash = 0;
   for (let i = 0; i < username.length; i++) {
@@ -24,14 +26,12 @@ const getColorFromUsername = (username: string) => {
   return (r << 16) + (g << 8) + b;
 };
 
-export const buildCheckinModalSubmitResponse = ({
+export const buildCheckoutModalSubmitResponse = ({
   member,
-  profile,
-  todo,
+  content,
 }: {
   member: APIInteractionGuildMember;
-  profile: string;
-  todo: string;
+  content: string;
 }): APIInteractionResponseChannelMessageWithSource => {
   const thumbnailURL = buildMemberProfileImageURL(member);
   return {
@@ -50,20 +50,8 @@ export const buildCheckinModalSubmitResponse = ({
           },
           fields: [
             {
-              name: "👤 自己紹介",
-              value: profile,
-            },
-            {
-              name: "",
-              value: "",
-            },
-            {
-              name: "📚 今日やること",
-              value: todo,
-            },
-            {
-              name: "",
-              value: "",
+              name: "💪 今日やったこと",
+              value: content,
             },
           ],
         },

@@ -4,7 +4,8 @@
     "deploy": "wrangler deploy --minify src/index.ts",
     "check": "bunx @biomejs/biome check --apply ./src",
     "generate": "drizzle-kit generate:sqlite --schema=src/schema.ts",
-    "up": "drizzle-kit up:sqlite --schema=src/schema.ts",
+    "migrate:local": "wrangler d1 migrations apply prod-mokumoku-bot",
+    "migrate:prod": "wrangler d1 migrations apply prod-mokumoku-bot --remote",
     "test": "vitest"
   },
   "dependencies": {

@@ -1,0 +1,1 @@
+ALTER TABLE events ADD `title` text NOT NULL;

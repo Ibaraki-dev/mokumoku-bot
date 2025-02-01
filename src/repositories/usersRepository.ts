@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { desc, eq } from "drizzle-orm";
+import { and, desc, eq } from "drizzle-orm";
 import { checkins, users } from "../schema";
 import { BaseRepository } from "./baseRepository";
 
@@ -40,8 +40,34 @@ export class UsersRepository extends BaseRepository {
       })
       .from(users)
       .leftJoin(checkins, eq(users.id, checkins.userId))
-      .where(eq(users.discordUserId, discordUserId))
+      .where(
+        and(
+          eq(users.discordUserId, discordUserId),
+          eq(checkins.date, dayjs().format("YYYY-MM-DD")),
+        ),
+      )
       .orderBy(desc(checkins.createdAt))
+      .limit(1);
+    return result.length > 0 ? result[0] : undefined;
+  }
+
+  public async findTodayCheckinByDiscordUserId(discordUserId: string) {
+    const result = await this.db
+      .select({
+        id: checkins.id,
+        userId: checkins.userId,
+        todo: checkins.todo,
+        profile: checkins.profile,
+        date: checkins.date,
+      })
+      .from(users)
+      .leftJoin(checkins, eq(users.id, checkins.userId))
+      .where(
+        and(
+          eq(users.discordUserId, discordUserId),
+          eq(checkins.date, dayjs().format("YYYY-MM-DD")),
+        ),
+      )
       .limit(1);
     return result.length > 0 ? result[0] : undefined;
   }

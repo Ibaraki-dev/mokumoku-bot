@@ -4,34 +4,32 @@ import {
   InteractionResponseType,
   TextInputStyle,
 } from "discord-api-types/v10";
-import { MOKUMOKU_START_MODAL_CUSTOM_ID } from "../constants";
+import { CHECKOUT_MODAL_CUSTOM_ID } from "../constants";
 
-export const buildMokumokuStartCommandResponse = ({
-  prevName,
-  prevSchedule,
+export const buildCheckoutModalResponse = ({
+  todo,
 }: {
-  prevName?: string;
-  prevSchedule?: string;
+  todo: string;
 }): APIModalInteractionResponse => {
   return {
     type: InteractionResponseType.Modal,
     data: {
-      custom_id: MOKUMOKU_START_MODAL_CUSTOM_ID,
-      title: "イベント概要",
+      custom_id: CHECKOUT_MODAL_CUSTOM_ID,
+      title: "チェックアウト",
       components: [
         {
           type: ComponentType.ActionRow,
           components: [
             {
               type: ComponentType.TextInput,
-              custom_id: "name",
-              label: "イベント名",
-              style: TextInputStyle.Short,
+              custom_id: "todo",
+              label: "今日やること",
+              style: TextInputStyle.Paragraph,
               min_length: 1,
               max_length: 512,
               required: true,
-              value: prevName,
-              placeholder: "LAPRASもくもく会",
+              placeholder: "checkinで入力した内容が表示されます",
+              value: todo,
             },
           ],
         },
@@ -40,14 +38,13 @@ export const buildMokumokuStartCommandResponse = ({
           components: [
             {
               type: ComponentType.TextInput,
-              custom_id: "schedule",
-              label: "イベントスケジュール",
+              custom_id: "content",
+              label: "今日やったこと",
               style: TextInputStyle.Paragraph,
               min_length: 1,
               max_length: 512,
               required: true,
-              value: prevSchedule,
-              placeholder: "* 18:30〜19:00 受付\n* 19:00〜21:00 もくもく作業",
+              placeholder: "* 新しい機能が実装できた🚀\n* 技術書を読んだ📚",
             },
           ],
         },

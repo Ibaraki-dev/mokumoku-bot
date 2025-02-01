@@ -40,5 +40,5 @@ export const handleModalSubmits = async ({
       });
     }
   }
-  throw new Error("Invalid interaction");
+  throw new Error("Invalid interaction modal submit");
 };
