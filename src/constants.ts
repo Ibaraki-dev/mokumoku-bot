@@ -9,3 +9,7 @@ export const GENERATE_EVENT_DESCRIPTION_COMMAND_NAME =
 
 export const CONNPASS_EVENT_PAGE_URL =
   "https://mito-web-engineer.connpass.com/";
+
+export const CHECKOUT_COMMAND_NAME = "checkout";
+
+export const CHECKOUT_MODAL_CUSTOM_ID = "checkout";
