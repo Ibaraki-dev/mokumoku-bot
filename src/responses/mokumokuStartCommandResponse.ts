@@ -24,6 +24,11 @@ const checkinText = () =>
 メッセージ欄に\`/ checkin\` と入力してEnterを押すと、モーダルが表示されます。そのモーダルに自己紹介と今日やることを入力して送信すると、チェックインが投稿されます。
 `.trim();
 
+const checkoutText = () =>
+  `
+メッセージ欄に\`/ checkout\` と入力してEnterを押すと、モーダルが表示されます。そのモーダルに今日やったことを入力して送信すると、チェックアウトが投稿されます。
+`.trim();
+
 export const buildMokumokuCommandResponse = ({
   date,
 }: {
@@ -44,8 +49,12 @@ export const buildMokumokuCommandResponse = ({
               value: scheduleText(),
             },
             {
-              name: "📝 checkinコマンド",
+              name: "🏠 checkinコマンド",
               value: checkinText(),
+            },
+            {
+              name: "🚗 checkoutコマンド",
+              value: checkoutText(),
             },
           ],
         },
