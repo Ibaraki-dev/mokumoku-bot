@@ -1,8 +1,4 @@
-import {
-  RESTPatchAPIChannelMessageFormDataBody,
-  RESTPostAPIChannelMessageFormDataBody,
-  RESTPostAPIChannelMessageJSONBody,
-} from "discord-api-types/v10";
+import type { RESTPostAPIChannelMessageJSONBody } from "discord-api-types/v10";
 import FormData from "form-data";
 
 export class DiscordClient {
@@ -21,7 +17,10 @@ export class DiscordClient {
   async sendMessage({
     channelId,
     body,
-  }: { channelId: string; body: RESTPostAPIChannelMessageJSONBody }) {
+  }: {
+    channelId: string;
+    body: RESTPostAPIChannelMessageJSONBody;
+  }) {
     const res = await fetch(`${this.BASE_URL}/channels/${channelId}/messages`, {
       method: "POST",
       body: JSON.stringify(body),

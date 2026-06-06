@@ -1,8 +1,6 @@
 {
-  "version": "5",
+  "version": "6",
   "dialect": "sqlite",
-  "id": "611abc5e-97a2-4509-8688-404a2523ef23",
-  "prevId": "a24f9881-d3b1-478b-83f7-10bcdff88b98",
   "tables": {
     "checkins": {
       "name": "checkins",
@@ -55,7 +53,9 @@
       "indexes": {
         "userId_idx": {
           "name": "userId_idx",
-          "columns": ["user_id"],
+          "columns": [
+            "user_id"
+          ],
           "isUnique": false
         }
       },
@@ -63,15 +63,20 @@
         "checkins_user_id_users_id_fk": {
           "name": "checkins_user_id_users_id_fk",
           "tableFrom": "checkins",
+          "columnsFrom": [
+            "user_id"
+          ],
           "tableTo": "users",
-          "columnsFrom": ["user_id"],
-          "columnsTo": ["id"],
-          "onDelete": "no action",
-          "onUpdate": "no action"
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
         }
       },
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {},
+      "checkConstraints": {}
     },
     "checkouts": {
       "name": "checkouts",
@@ -117,7 +122,9 @@
       "indexes": {
         "checkouts_userId_idx": {
           "name": "checkouts_userId_idx",
-          "columns": ["user_id"],
+          "columns": [
+            "user_id"
+          ],
           "isUnique": false
         }
       },
@@ -125,15 +132,20 @@
         "checkouts_user_id_users_id_fk": {
           "name": "checkouts_user_id_users_id_fk",
           "tableFrom": "checkouts",
+          "columnsFrom": [
+            "user_id"
+          ],
           "tableTo": "users",
-          "columnsFrom": ["user_id"],
-          "columnsTo": ["id"],
-          "onDelete": "no action",
-          "onUpdate": "no action"
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
         }
       },
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {},
+      "checkConstraints": {}
     },
     "events": {
       "name": "events",
@@ -171,7 +183,8 @@
       "indexes": {},
       "foreignKeys": {},
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {},
+      "checkConstraints": {}
     },
     "events_to_checkins": {
       "name": "events_to_checkins",
@@ -196,29 +209,41 @@
         "events_to_checkins_event_id_events_id_fk": {
           "name": "events_to_checkins_event_id_events_id_fk",
           "tableFrom": "events_to_checkins",
+          "columnsFrom": [
+            "event_id"
+          ],
           "tableTo": "events",
-          "columnsFrom": ["event_id"],
-          "columnsTo": ["id"],
-          "onDelete": "no action",
-          "onUpdate": "no action"
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
         },
         "events_to_checkins_checkin_id_checkins_id_fk": {
           "name": "events_to_checkins_checkin_id_checkins_id_fk",
           "tableFrom": "events_to_checkins",
+          "columnsFrom": [
+            "checkin_id"
+          ],
           "tableTo": "checkins",
-          "columnsFrom": ["checkin_id"],
-          "columnsTo": ["id"],
-          "onDelete": "no action",
-          "onUpdate": "no action"
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
         }
       },
       "compositePrimaryKeys": {
         "events_to_checkins_event_id_checkin_id_pk": {
-          "columns": ["checkin_id", "event_id"],
+          "columns": [
+            "checkin_id",
+            "event_id"
+          ],
           "name": "events_to_checkins_event_id_checkin_id_pk"
         }
       },
-      "uniqueConstraints": {}
+      "uniqueConstraints": {},
+      "checkConstraints": {}
     },
     "users": {
       "name": "users",
@@ -256,29 +281,38 @@
       "indexes": {
         "users_discord_user_id_unique": {
           "name": "users_discord_user_id_unique",
-          "columns": ["discord_user_id"],
+          "columns": [
+            "discord_user_id"
+          ],
           "isUnique": true
         },
         "name_idx": {
           "name": "name_idx",
-          "columns": ["name"],
+          "columns": [
+            "name"
+          ],
           "isUnique": false
         },
         "discordUserId_idx": {
           "name": "discordUserId_idx",
-          "columns": ["discord_user_id"],
+          "columns": [
+            "discord_user_id"
+          ],
           "isUnique": false
         }
       },
       "foreignKeys": {},
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {},
+      "checkConstraints": {}
     }
   },
   "enums": {},
   "_meta": {
-    "schemas": {},
     "tables": {},
     "columns": {}
-  }
+  },
+  "id": "611abc5e-97a2-4509-8688-404a2523ef23",
+  "prevId": "a24f9881-d3b1-478b-83f7-10bcdff88b98",
+  "views": {}
 }

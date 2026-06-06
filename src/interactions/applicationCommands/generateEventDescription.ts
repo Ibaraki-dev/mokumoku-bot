@@ -1,13 +1,13 @@
 import {
-  APIInteractionResponseChannelMessageWithSource,
+  type APIInteractionResponseChannelMessageWithSource,
   InteractionResponseType,
 } from "discord-api-types/v10";
 import {
   CONNPASS_EVENT_PAGE_URL,
   GENERATE_EVENT_DESCRIPTION_COMMAND_NAME,
 } from "../../constants";
-import { Bindings, Clients, Repositories } from "../../types";
-import { ApplicationCommandObj } from "../handleApplicationCommands";
+import type { Clients, Repositories } from "../../types";
+import type { ApplicationCommandObj } from "../handleApplicationCommands";
 
 export const buildDescription = (eventUrl: string, todos: string[]) => {
   return `

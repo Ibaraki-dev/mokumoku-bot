@@ -1,8 +1,6 @@
 {
-  "version": "5",
+  "version": "6",
   "dialect": "sqlite",
-  "id": "2559c6df-4975-4c6f-b77b-557e37492627",
-  "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "checkins": {
       "name": "checkins",
@@ -65,19 +63,20 @@
         "checkins_user_id_users_id_fk": {
           "name": "checkins_user_id_users_id_fk",
           "tableFrom": "checkins",
-          "tableTo": "users",
           "columnsFrom": [
             "user_id"
           ],
+          "tableTo": "users",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "no action",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "no action"
         }
       },
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {},
+      "checkConstraints": {}
     },
     "users": {
       "name": "users",
@@ -137,13 +136,16 @@
       },
       "foreignKeys": {},
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {},
+      "checkConstraints": {}
     }
   },
   "enums": {},
   "_meta": {
-    "schemas": {},
     "tables": {},
     "columns": {}
-  }
+  },
+  "id": "2559c6df-4975-4c6f-b77b-557e37492627",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "views": {}
 }

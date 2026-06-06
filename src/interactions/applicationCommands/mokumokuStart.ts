@@ -1,10 +1,10 @@
 import dayjs from "dayjs";
 import { MOKUMOKU_START_COMMAND_NAME } from "../../constants";
 import { buildMokumokuCommandResponse as buildMokumokuStartCommandResponse } from "../../responses/mokumokuStartCommandResponse";
-import { Repositories } from "../../types";
+import type { Repositories } from "../../types";
 
 const handler = async ({
-  repositories: { eventsRepository },
+  repositories: { eventsRepository, mokumokuStartFormatsRepository },
 }: {
   repositories: Repositories;
 }) => {
@@ -17,7 +17,12 @@ const handler = async ({
   }
 
   const today = dayjs().tz().format("YYYY年MM月DD日");
-  return buildMokumokuStartCommandResponse({ date: today });
+  const format = await mokumokuStartFormatsRepository.find();
+
+  return buildMokumokuStartCommandResponse({
+    date: today,
+    format,
+  });
 };
 
 export default {

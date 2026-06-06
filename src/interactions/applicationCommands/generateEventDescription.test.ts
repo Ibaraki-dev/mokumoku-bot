@@ -1,7 +1,7 @@
 import { InteractionResponseType } from "discord-api-types/v9";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { Clients, Repositories } from "../../types";
-import { ApplicationCommandObj } from "../handleApplicationCommands";
+import type { Clients, Repositories } from "../../types";
+import type { ApplicationCommandObj } from "../handleApplicationCommands";
 import generateEventDescriptionCommand from "./generateEventDescription";
 
 describe("handler", () => {

@@ -1,8 +1,15 @@
 import {
-  APIInteractionGuildMember,
-  APIInteractionResponseChannelMessageWithSource,
+  type APIActionRowComponent,
+  type APIButtonComponent,
+  type APIInteractionGuildMember,
+  type APIInteractionResponseChannelMessageWithSource,
+  type APIInteractionResponseUpdateMessage,
+  ButtonStyle,
+  ComponentType,
   InteractionResponseType,
 } from "discord-api-types/v10";
+import { EDIT_CHECKIN_CUSTOM_ID } from "../constants";
+import { buildCustomId } from "../interactions/parseCustomId";
 import { getColorFromUsername } from "../utils/getColorFromUsername";
 
 const buildMemberProfileImageURL = (member: APIInteractionGuildMember) => {
@@ -13,14 +20,22 @@ export const buildCheckinModalSubmitResponse = ({
   member,
   profile,
   todo,
+  checkinId,
+  responseType = InteractionResponseType.ChannelMessageWithSource,
 }: {
   member: APIInteractionGuildMember;
   profile: string;
   todo: string;
-}): APIInteractionResponseChannelMessageWithSource => {
+  checkinId: number;
+  responseType?:
+    | InteractionResponseType.ChannelMessageWithSource
+    | InteractionResponseType.UpdateMessage;
+}):
+  | APIInteractionResponseChannelMessageWithSource
+  | APIInteractionResponseUpdateMessage => {
   const thumbnailURL = buildMemberProfileImageURL(member);
   return {
-    type: InteractionResponseType.ChannelMessageWithSource,
+    type: responseType,
     data: {
       embeds: [
         {
@@ -53,6 +68,21 @@ export const buildCheckinModalSubmitResponse = ({
           ],
         },
       ],
+      components: [buildEditButtonActionRow(checkinId)],
     },
   };
 };
+
+const buildEditButtonActionRow = (
+  checkinId: number,
+): APIActionRowComponent<APIButtonComponent> => ({
+  type: ComponentType.ActionRow,
+  components: [
+    {
+      type: ComponentType.Button,
+      style: ButtonStyle.Secondary,
+      label: "編集",
+      custom_id: buildCustomId(EDIT_CHECKIN_CUSTOM_ID, checkinId),
+    },
+  ],
+});

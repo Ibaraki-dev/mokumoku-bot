@@ -7,5 +7,4 @@ dist
 # Change them to your taste:
 package-lock.json
 yarn.lock
-pnpm-lock.yaml
 bun.lockb

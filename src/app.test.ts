@@ -4,14 +4,15 @@ import {
 } from "discord-api-types/v10";
 import { testClient } from "hono/testing";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import app, { interactionRoot } from "./app";
+import app, { type interactionRoot } from "./app";
 import { handleApplicationCommands } from "./interactions/handleApplicationCommands";
+import { handleMessageComponents } from "./interactions/handleMessageComponents";
 import { handleModalSubmits } from "./interactions/handleModalSubmit";
 import { verifyDiscordInteraction } from "./middleware/verifyDiscordInteraction";
 
 vi.mock("./middleware/verifyDiscordInteraction", () => {
   return {
-    verifyDiscordInteraction: vi.fn(async (c, next) => await next()),
+    verifyDiscordInteraction: vi.fn(async (_c, next) => await next()),
   };
 });
 vi.mock("./interactions/handleApplicationCommands", () => ({
@@ -19,6 +20,9 @@ vi.mock("./interactions/handleApplicationCommands", () => ({
 }));
 vi.mock("./interactions/handleModalSubmit", () => ({
   handleModalSubmits: vi.fn(async () => ({ res: "ok" })),
+}));
+vi.mock("./interactions/handleMessageComponents", () => ({
+  handleMessageComponents: vi.fn(async () => ({ res: "ok" })),
 }));
 
 const mockEnv = {
@@ -41,24 +45,28 @@ describe("intensions", () => {
       type: InteractionType.ModalSubmit,
       handler: handleModalSubmits,
     },
-  ])(
-    "should call correct handler based on interaction type",
-    async ({ type, handler }) => {
-      const res = await testClient<typeof interactionRoot>(
-        app,
-        mockEnv,
-      ).interaction.$post({
-        json: {
-          type,
-          data: {},
-        },
-      });
-
-      expect(verifyDiscordInteraction).toHaveBeenCalled();
-      expect(handler).toHaveBeenCalled();
-      expect(await res.json()).toEqual({ res: "ok" });
+    {
+      type: InteractionType.MessageComponent,
+      handler: handleMessageComponents,
     },
-  );
+  ])("should call correct handler based on interaction type", async ({
+    type,
+    handler,
+  }) => {
+    const res = await testClient<typeof interactionRoot>(
+      app,
+      mockEnv,
+    ).interaction.$post({
+      json: {
+        type,
+        data: {},
+      },
+    });
+
+    expect(verifyDiscordInteraction).toHaveBeenCalled();
+    expect(handler).toHaveBeenCalled();
+    expect(await res.json()).toEqual({ res: "ok" });
+  });
 
   it("should return error response if un handle interaction type is received", async () => {
     const res = await testClient<typeof interactionRoot>(

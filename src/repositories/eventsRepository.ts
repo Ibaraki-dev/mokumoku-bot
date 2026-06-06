@@ -23,11 +23,7 @@ export class EventsRepository extends BaseRepository {
     });
   }
 
-  async create({
-    name,
-  }: {
-    name: string;
-  }) {
+  async create({ name }: { name: string }) {
     await this.db.insert(events).values({
       name,
       date: dayjs().tz().format("YYYY-MM-DD"),

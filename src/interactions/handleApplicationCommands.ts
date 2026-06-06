@@ -1,5 +1,8 @@
-import { APIBaseInteraction, InteractionType } from "discord-api-types/v10";
-import { Bindings, Clients, Repositories } from "../types";
+import type {
+  APIBaseInteraction,
+  InteractionType,
+} from "discord-api-types/v10";
+import type { Clients, Repositories } from "../types";
 
 export type ApplicationCommandObj = APIBaseInteraction<
   InteractionType.ApplicationCommand,
@@ -25,7 +28,7 @@ export const handleApplicationCommands = async ({
       clients: Clients;
     }) => Promise<{
       type: number;
-      data: unknown;
+      data?: unknown;
     }>;
   }[];
 }) => {

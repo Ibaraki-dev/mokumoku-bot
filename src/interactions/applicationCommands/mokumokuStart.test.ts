@@ -1,6 +1,6 @@
 import { InteractionResponseType } from "discord-api-types/v10";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { Repositories } from "../../types";
+import type { Repositories } from "../../types";
 import mokumokuStat from "./mokumokuStart";
 
 vi.mock("dayjs", () => ({
@@ -22,6 +22,9 @@ describe("handler", () => {
         findTodayEvent: vi.fn().mockResolvedValue(undefined),
         create: vi.fn(),
       },
+      mokumokuStartFormatsRepository: {
+        find: vi.fn().mockResolvedValue(undefined),
+      },
     };
 
     const response = await mokumokuStat.handler({
@@ -36,6 +39,7 @@ describe("handler", () => {
       data: {
         content: expect.stringContaining("2021年01月01日"),
         embeds: expect.any(Array),
+        components: expect.any(Array),
       },
     });
   });
@@ -45,6 +49,14 @@ describe("handler", () => {
       eventsRepository: {
         findTodayEvent: vi.fn().mockResolvedValue({}),
         create: vi.fn(),
+      },
+      mokumokuStartFormatsRepository: {
+        find: vi.fn().mockResolvedValue({
+          contentTemplate: "{date} custom start",
+          schedule: "custom schedule",
+          checkinCommand: "custom checkin",
+          checkoutCommand: "custom checkout",
+        }),
       },
     };
 
@@ -57,7 +69,26 @@ describe("handler", () => {
       type: InteractionResponseType.ChannelMessageWithSource,
       data: {
         content: expect.stringContaining("2021年01月01日"),
-        embeds: expect.any(Array),
+        embeds: [
+          {
+            thumbnail: expect.any(Object),
+            fields: [
+              {
+                name: "🕗 スケジュール",
+                value: "custom schedule",
+              },
+              {
+                name: "🏠 checkinコマンド",
+                value: "custom checkin",
+              },
+              {
+                name: "🚗 checkoutコマンド",
+                value: "custom checkout",
+              },
+            ],
+          },
+        ],
+        components: expect.any(Array),
       },
     });
   });

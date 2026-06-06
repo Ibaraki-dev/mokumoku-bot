@@ -1,5 +1,5 @@
 import {
-  APIInteractionResponseChannelMessageWithSource,
+  type APIInteractionResponseChannelMessageWithSource,
   InteractionResponseType,
 } from "discord-api-types/v10";
 

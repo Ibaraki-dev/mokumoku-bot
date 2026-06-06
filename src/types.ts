@@ -1,10 +1,12 @@
-import { ConnpassClient } from "./clients/connpass";
-import { DiscordClient } from "./clients/discord";
-import { CheckinsRepository } from "./repositories/checkinsRepository";
-import { CheckoutsRepository } from "./repositories/checkout";
-import { EventsRepository } from "./repositories/eventsRepository";
-import { EventsToCheckinsRepository } from "./repositories/eventsToCheckinsRepository";
-import { UsersRepository } from "./repositories/usersRepository";
+import type { ConnpassClient } from "./clients/connpass";
+import type { DiscordClient } from "./clients/discord";
+import type { CheckinsRepository } from "./repositories/checkinsRepository";
+import type { CheckoutsRepository } from "./repositories/checkout";
+import type { EventsRepository } from "./repositories/eventsRepository";
+import type { EventsToCheckinsRepository } from "./repositories/eventsToCheckinsRepository";
+import type { MokumokuStartFormatsRepository } from "./repositories/mokumokuStartFormatsRepository";
+import type { TechTalkSpeakersRepository } from "./repositories/techTalkSpeakersRepository";
+import type { UsersRepository } from "./repositories/usersRepository";
 
 export type Repositories = {
   usersRepository: UsersRepository;
@@ -12,6 +14,8 @@ export type Repositories = {
   eventsRepository: EventsRepository;
   eventsToCheckinsRepository: EventsToCheckinsRepository;
   checkoutsRepository: CheckoutsRepository;
+  mokumokuStartFormatsRepository: MokumokuStartFormatsRepository;
+  techTalkSpeakersRepository: TechTalkSpeakersRepository;
 };
 
 export type Clients = {

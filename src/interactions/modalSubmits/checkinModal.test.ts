@@ -1,7 +1,7 @@
+import { ComponentType } from "discord-api-types/v10";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { Repositories } from "../../types";
-import { ApplicationCommandObj } from "../handleApplicationCommands";
-import { ModalSubmitObj } from "../handleModalSubmit";
+import type { Repositories } from "../../types";
+import type { ModalSubmitObj } from "../handleModalSubmit";
 import checkinModal from "./checkinModal";
 
 describe("handler", () => {
@@ -61,8 +61,26 @@ describe("handler", () => {
       member: { user: { id: "1", username: "test" } },
       data: {
         components: [
-          { components: [{ value: "profile" }] },
-          { components: [{ value: "todo" }] },
+          {
+            type: ComponentType.ActionRow,
+            components: [
+              {
+                type: ComponentType.TextInput,
+                custom_id: "profile",
+                value: "profile",
+              },
+            ],
+          },
+          {
+            type: ComponentType.ActionRow,
+            components: [
+              {
+                type: ComponentType.TextInput,
+                custom_id: "todo",
+                value: "todo",
+              },
+            ],
+          },
         ],
       },
     } as ModalSubmitObj;
@@ -102,8 +120,26 @@ describe("handler", () => {
       member: { user: { id: "1", username: "test" } },
       data: {
         components: [
-          { components: [{ value: "profile" }] },
-          { components: [{ value: "todo" }] },
+          {
+            type: ComponentType.ActionRow,
+            components: [
+              {
+                type: ComponentType.TextInput,
+                custom_id: "profile",
+                value: "profile",
+              },
+            ],
+          },
+          {
+            type: ComponentType.ActionRow,
+            components: [
+              {
+                type: ComponentType.TextInput,
+                custom_id: "todo",
+                value: "todo",
+              },
+            ],
+          },
         ],
       },
     } as ModalSubmitObj;
