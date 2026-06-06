@@ -5,6 +5,7 @@ import {
   primaryKey,
   sqliteTable,
   text,
+  uniqueIndex,
 } from "drizzle-orm/sqlite-core";
 
 export const users = sqliteTable(
@@ -49,7 +50,7 @@ export const eventsToCheckins = sqliteTable(
       .references(() => checkins.id),
   },
   (t) => ({
-    pk: primaryKey({ columns: [t.eventId, t.checkinId] }),
+    pk: primaryKey({ columns: [t.checkinId, t.eventId] }),
   }),
 );
 
@@ -75,6 +76,35 @@ export const events = sqliteTable("events", {
   date: text("date").notNull(),
   createdAt: text("created_at").default(sql`CURRENT_TIMESTAMP`),
 });
+
+export const mokumokuStartFormats = sqliteTable("mokumoku_start_formats", {
+  id: integer("id").primaryKey(),
+  contentTemplate: text("content_template").notNull(),
+  schedule: text("schedule").notNull(),
+  checkinCommand: text("checkin_command").notNull(),
+  checkoutCommand: text("checkout_command").notNull(),
+  createdAt: text("created_at").default(sql`CURRENT_TIMESTAMP`),
+  updatedAt: text("updated_at").default(sql`CURRENT_TIMESTAMP`),
+});
+
+export const techTalkSpeakers = sqliteTable(
+  "tech_talk_speakers",
+  {
+    id: integer("id").primaryKey(),
+    messageId: text("message_id").notNull(),
+    discordUserId: text("discord_user_id").notNull(),
+    displayName: text("display_name").notNull(),
+    createdAt: text("created_at").default(sql`CURRENT_TIMESTAMP`),
+  },
+  (techTalkSpeakers) => ({
+    messageIdIdx: index("tech_talk_speakers_message_id_idx").on(
+      techTalkSpeakers.messageId,
+    ),
+    messageUserUniqueIdx: uniqueIndex(
+      "tech_talk_speakers_message_user_unique_idx",
+    ).on(techTalkSpeakers.messageId, techTalkSpeakers.discordUserId),
+  }),
+);
 
 export const usersRelations = relations(users, ({ many }) => ({
   checkins: many(checkins),

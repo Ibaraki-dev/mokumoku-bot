@@ -43,4 +43,4 @@ https://github.com/Ibaraki-dev/mokumoku-bot/assets/11070996/b4dc1a42-5e12-4059-9
 
 - [Hono](https://hono.dev/)
 - [Cloudflare](https://www.cloudflare.com/)
-- [bun](https://bun.sh/)
+- [pnpm](https://pnpm.io/)

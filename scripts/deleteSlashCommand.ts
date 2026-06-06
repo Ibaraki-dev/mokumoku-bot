@@ -2,7 +2,7 @@ import { parseArgs } from "util";
 
 const main = async () => {
   const { values } = parseArgs({
-    args: Bun.argv,
+    args: process.argv.slice(2),
     options: {
       id: {
         type: "string",
@@ -15,10 +15,10 @@ const main = async () => {
 
   const headers = {
     "Content-Type": "application/json",
-    Authorization: `Bot ${Bun.env.DISCORD_TOKEN}`,
+    Authorization: `Bot ${process.env.DISCORD_TOKEN}`,
   };
 
-  const url = `https://discord.com/api/v10/applications/${Bun.env.DISCORD_APPLICATION_ID}/guilds/${Bun.env.DISCORD_GUILD_ID}/commands/${values.id}`;
+  const url = `https://discord.com/api/v10/applications/${process.env.DISCORD_APPLICATION_ID}/guilds/${process.env.DISCORD_GUILD_ID}/commands/${values.id}`;
 
   const res = await fetch(url, {
     method: "DELETE",

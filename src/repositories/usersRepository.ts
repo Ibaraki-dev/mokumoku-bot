@@ -39,14 +39,9 @@ export class UsersRepository extends BaseRepository {
         date: checkins.date,
       })
       .from(users)
-      .leftJoin(checkins, eq(users.id, checkins.userId))
-      .where(
-        and(
-          eq(users.discordUserId, discordUserId),
-          eq(checkins.date, dayjs().format("YYYY-MM-DD")),
-        ),
-      )
-      .orderBy(desc(checkins.createdAt))
+      .innerJoin(checkins, eq(users.id, checkins.userId))
+      .where(eq(users.discordUserId, discordUserId))
+      .orderBy(desc(checkins.createdAt), desc(checkins.id))
       .limit(1);
     return result.length > 0 ? result[0] : undefined;
   }
@@ -61,13 +56,14 @@ export class UsersRepository extends BaseRepository {
         date: checkins.date,
       })
       .from(users)
-      .leftJoin(checkins, eq(users.id, checkins.userId))
+      .innerJoin(checkins, eq(users.id, checkins.userId))
       .where(
         and(
           eq(users.discordUserId, discordUserId),
-          eq(checkins.date, dayjs().format("YYYY-MM-DD")),
+          eq(checkins.date, dayjs().tz().format("YYYY-MM-DD")),
         ),
       )
+      .orderBy(desc(checkins.createdAt), desc(checkins.id))
       .limit(1);
     return result.length > 0 ? result[0] : undefined;
   }

@@ -1,5 +1,5 @@
 import {
-  APIModalInteractionResponse,
+  type APIModalInteractionResponse,
   ComponentType,
   InteractionResponseType,
   TextInputStyle,

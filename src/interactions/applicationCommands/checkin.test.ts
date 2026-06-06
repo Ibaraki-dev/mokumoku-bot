@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 import { buildCheckinModalResponse } from "../../responses/checkinCommandResponse";
-import { Repositories } from "../../types";
-import { ApplicationCommandObj } from "../handleApplicationCommands";
+import type { Repositories } from "../../types";
+import type { ApplicationCommandObj } from "../handleApplicationCommands";
 import checkinCommand from "./checkin";
 
 describe("handler function", () => {

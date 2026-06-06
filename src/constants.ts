@@ -13,3 +13,13 @@ export const CONNPASS_EVENT_PAGE_URL =
 export const CHECKOUT_COMMAND_NAME = "checkout";
 
 export const CHECKOUT_MODAL_CUSTOM_ID = "checkout";
+
+export const EDIT_CHECKIN_CUSTOM_ID = "edit-checkin";
+
+export const EDIT_CHECKOUT_CUSTOM_ID = "edit-checkout";
+
+export const EDIT_MOKUMOKU_START_CUSTOM_ID = "edit-mokumoku-start";
+
+export const JOIN_TECH_TALK_CUSTOM_ID = "join-tech-talk";
+
+export const LEAVE_TECH_TALK_CUSTOM_ID = "leave-tech-talk";

@@ -36,6 +36,20 @@
       "when": 1738394221714,
       "tag": "0004_fantastic_electro",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "6",
+      "when": 1780730244618,
+      "tag": "0005_late_sleepwalker",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "6",
+      "when": 1780730490526,
+      "tag": "0006_sour_garia",
+      "breakpoints": true
     }
   ]
 }

@@ -1,5 +1,5 @@
 import { InteractionResponseType, verifyKey } from "discord-interactions";
-import { Mock, beforeEach, describe, expect, it, vi } from "vitest";
+import { beforeEach, describe, expect, it, type Mock, vi } from "vitest";
 import { verifyDiscordInteraction } from "./verifyDiscordInteraction";
 
 vi.mock("hono/adapter", () => ({
@@ -14,9 +14,9 @@ vi.mock("discord-interactions", async (importOriginal) => {
 });
 
 describe("verifyDiscordInteraction", () => {
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+  // biome-ignore lint/suspicious/noExplicitAny: test context mock
   let ctx: any;
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+  // biome-ignore lint/suspicious/noExplicitAny: test context mock
   let next: any;
 
   beforeEach(() => {
@@ -29,7 +29,7 @@ describe("verifyDiscordInteraction", () => {
         },
       },
       json: vi.fn(),
-      // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+      // biome-ignore lint/suspicious/noExplicitAny: test context mock
     } as any;
     next = vi.fn();
   });

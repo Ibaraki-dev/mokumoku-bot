@@ -1,29 +1,35 @@
 {
+  "packageManager": "pnpm@10.29.2",
   "scripts": {
     "dev": "wrangler dev src/index.ts",
     "deploy": "wrangler deploy --minify src/index.ts",
-    "check": "bunx @biomejs/biome check --apply ./src",
-    "generate": "drizzle-kit generate:sqlite --schema=src/schema.ts",
+    "check": "biome check --write ./src",
+    "generate": "drizzle-kit generate",
     "migrate:local": "wrangler d1 migrations apply prod-mokumoku-bot",
     "migrate:prod": "wrangler d1 migrations apply prod-mokumoku-bot --remote",
-    "up": "drizzle-kit up:sqlite --schema=src/schema.ts",
-    "test": "vitest"
+    "up": "drizzle-kit up",
+    "slash-command:create": "tsx scripts/createSlashCommand.ts",
+    "slash-command:delete": "tsx scripts/deleteSlashCommand.ts",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "dependencies": {
-    "dayjs": "^1.11.10",
-    "discord-api-types": "^0.37.70",
-    "discord-interactions": "^3.4.0",
-    "drizzle-orm": "^0.29.4",
-    "form-data": "^4.0.0",
-    "hono": "^4.0.5",
-    "lefthook": "^1.6.3"
+    "dayjs": "^1.11.21",
+    "discord-api-types": "^0.38.48",
+    "discord-interactions": "^4.4.0",
+    "drizzle-orm": "^0.45.2",
+    "form-data": "^4.0.5",
+    "hono": "^4.12.23",
+    "lefthook": "^2.1.9"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.5.3",
-    "@cloudflare/workers-types": "^4.20240208.0",
-    "bun-types": "^1.0.29",
-    "drizzle-kit": "^0.20.14",
-    "vitest": "^1.3.1",
-    "wrangler": "^3.25.0"
+    "@biomejs/biome": "2.4.16",
+    "@cloudflare/workers-types": "^4.20260606.1",
+    "@types/node": "^25.9.2",
+    "drizzle-kit": "^0.31.10",
+    "tsx": "^4.22.4",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.8",
+    "wrangler": "^4.98.0"
   }
 }

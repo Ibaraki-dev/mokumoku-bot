@@ -1,7 +1,7 @@
 import { CHECKOUT_COMMAND_NAME } from "../../constants";
 import { buildCheckoutModalResponse } from "../../responses/checkoutModalResponse";
-import { Repositories } from "../../types";
-import { ApplicationCommandObj } from "../handleApplicationCommands";
+import type { Repositories } from "../../types";
+import type { ApplicationCommandObj } from "../handleApplicationCommands";
 
 const handler = async ({
   intentObj,

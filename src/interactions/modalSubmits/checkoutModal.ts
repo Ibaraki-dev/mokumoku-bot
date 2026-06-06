@@ -1,7 +1,8 @@
 import { CHECKOUT_MODAL_CUSTOM_ID } from "../../constants";
 import { buildCheckoutModalSubmitResponse } from "../../responses/checkoutModalSubmitResponse";
-import { Repositories } from "../../types";
-import { ModalSubmitObj } from "../handleModalSubmit";
+import type { Repositories } from "../../types";
+import type { ModalSubmitObj } from "../handleModalSubmit";
+import { getModalTextInputValue } from "./getModalTextInputValue";
 
 const handler = async ({
   modalSubmitObj,
@@ -13,8 +14,7 @@ const handler = async ({
   if (!(modalSubmitObj.member && modalSubmitObj.data)) {
     throw new Error("Invalid interaction");
   }
-  const todo = modalSubmitObj.data.components[0].components[0].value;
-  const content = modalSubmitObj.data.components[1].components[0].value;
+  const content = getModalTextInputValue(modalSubmitObj.data.components[1]);
 
   const user =
     (await usersRepository.findUserByDiscordUserId(
@@ -32,6 +32,7 @@ const handler = async ({
   return buildCheckoutModalSubmitResponse({
     member: modalSubmitObj.member,
     content,
+    checkoutId: checkout.id,
   });
 };
 

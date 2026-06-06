@@ -1,8 +1,6 @@
 {
-  "version": "5",
+  "version": "6",
   "dialect": "sqlite",
-  "id": "c959e463-7809-43c5-bce5-4cb1a0ef254a",
-  "prevId": "2559c6df-4975-4c6f-b77b-557e37492627",
   "tables": {
     "checkins": {
       "name": "checkins",
@@ -55,7 +53,9 @@
       "indexes": {
         "userId_idx": {
           "name": "userId_idx",
-          "columns": ["user_id"],
+          "columns": [
+            "user_id"
+          ],
           "isUnique": false
         }
       },
@@ -63,15 +63,20 @@
         "checkins_user_id_users_id_fk": {
           "name": "checkins_user_id_users_id_fk",
           "tableFrom": "checkins",
+          "columnsFrom": [
+            "user_id"
+          ],
           "tableTo": "users",
-          "columnsFrom": ["user_id"],
-          "columnsTo": ["id"],
-          "onDelete": "no action",
-          "onUpdate": "no action"
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
         }
       },
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {},
+      "checkConstraints": {}
     },
     "events": {
       "name": "events",
@@ -109,7 +114,8 @@
       "indexes": {},
       "foreignKeys": {},
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {},
+      "checkConstraints": {}
     },
     "users": {
       "name": "users",
@@ -147,23 +153,30 @@
       "indexes": {
         "users_discord_user_id_unique": {
           "name": "users_discord_user_id_unique",
-          "columns": ["discord_user_id"],
+          "columns": [
+            "discord_user_id"
+          ],
           "isUnique": true
         },
         "name_idx": {
           "name": "name_idx",
-          "columns": ["name"],
+          "columns": [
+            "name"
+          ],
           "isUnique": false
         },
         "discordUserId_idx": {
           "name": "discordUserId_idx",
-          "columns": ["discord_user_id"],
+          "columns": [
+            "discord_user_id"
+          ],
           "isUnique": false
         }
       },
       "foreignKeys": {},
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {},
+      "checkConstraints": {}
     },
     "users_to_events": {
       "name": "users_to_events",
@@ -188,35 +201,49 @@
         "users_to_events_user_id_users_id_fk": {
           "name": "users_to_events_user_id_users_id_fk",
           "tableFrom": "users_to_events",
+          "columnsFrom": [
+            "user_id"
+          ],
           "tableTo": "users",
-          "columnsFrom": ["user_id"],
-          "columnsTo": ["id"],
-          "onDelete": "no action",
-          "onUpdate": "no action"
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
         },
         "users_to_events_event_id_events_id_fk": {
           "name": "users_to_events_event_id_events_id_fk",
           "tableFrom": "users_to_events",
+          "columnsFrom": [
+            "event_id"
+          ],
           "tableTo": "events",
-          "columnsFrom": ["event_id"],
-          "columnsTo": ["id"],
-          "onDelete": "no action",
-          "onUpdate": "no action"
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
         }
       },
       "compositePrimaryKeys": {
         "users_to_events_user_id_event_id_pk": {
-          "columns": ["event_id", "user_id"],
+          "columns": [
+            "event_id",
+            "user_id"
+          ],
           "name": "users_to_events_user_id_event_id_pk"
         }
       },
-      "uniqueConstraints": {}
+      "uniqueConstraints": {},
+      "checkConstraints": {}
     }
   },
   "enums": {},
   "_meta": {
-    "schemas": {},
     "tables": {},
     "columns": {}
-  }
+  },
+  "id": "c959e463-7809-43c5-bce5-4cb1a0ef254a",
+  "prevId": "2559c6df-4975-4c6f-b77b-557e37492627",
+  "views": {}
 }

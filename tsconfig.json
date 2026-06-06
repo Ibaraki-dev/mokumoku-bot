@@ -4,14 +4,18 @@
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "strict": true,
+    "skipLibCheck": true,
     "lib": [
       "ESNext"
     ],
     "types": [
-      "bun-types",
       "@cloudflare/workers-types"
     ],
     "jsx": "react-jsx",
     "jsxImportSource": "hono/jsx"
   },
+  "include": [
+    "src/**/*.ts",
+    "drizzle.config.ts"
+  ],
 }

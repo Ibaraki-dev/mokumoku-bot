@@ -1,7 +1,8 @@
 import { CHECKIN_MODAL_CUSTOM_ID } from "../../constants";
 import { buildCheckinModalSubmitResponse } from "../../responses/checkinModalSubmitResponse";
-import { Repositories } from "../../types";
-import { ModalSubmitObj } from "../handleModalSubmit";
+import type { Repositories } from "../../types";
+import type { ModalSubmitObj } from "../handleModalSubmit";
+import { getModalTextInputValue } from "./getModalTextInputValue";
 
 const handler = async ({
   modalSubmitObj,
@@ -25,8 +26,8 @@ const handler = async ({
     );
   }
 
-  const profile = modalSubmitObj.data.components[0].components[0].value;
-  const todo = modalSubmitObj.data.components[1].components[0].value;
+  const profile = getModalTextInputValue(modalSubmitObj.data.components[0]);
+  const todo = getModalTextInputValue(modalSubmitObj.data.components[1]);
 
   const user =
     (await usersRepository.findUserByDiscordUserId(
@@ -50,6 +51,7 @@ const handler = async ({
     member: modalSubmitObj.member,
     profile,
     todo,
+    checkinId: checkin.id,
   });
 };
 
